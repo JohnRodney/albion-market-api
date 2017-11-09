@@ -5,12 +5,12 @@ import styles from '../templates/styles';
 import searchScript from '../templates/main-search';
 
 export const postEndpoint = (req, res) => {
+  /* parse the data from the query params */
   const data = JSON.parse(req.query.data).Orders;
 
+  /* insert all of the entries as single prices */
   MongoClient.connect(devMongoURI)
-    .then((db) => {
-      db.collection('prices').insertMany(data);
-    })
+    .then((db) => db.collection('prices').insertMany(data))
     .catch(err => Promise.resolve(console.log(err)));
 }
 

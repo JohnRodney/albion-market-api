@@ -26,10 +26,12 @@ var _mainSearch2 = _interopRequireDefault(_mainSearch);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var postEndpoint = exports.postEndpoint = function postEndpoint(req, res) {
+  /* parse the data from the query params */
   var data = JSON.parse(req.query.data).Orders;
 
+  /* insert all of the entries as single prices */
   _mongodb.MongoClient.connect(_devmongo2.default).then(function (db) {
-    db.collection('prices').insertMany(data);
+    return db.collection('prices').insertMany(data);
   }).catch(function (err) {
     return Promise.resolve(console.log(err));
   });

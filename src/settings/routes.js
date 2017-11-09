@@ -65,6 +65,7 @@ export default {
               height: 60px;
               background: #0097A7;
               text-align: center;
+              z-index: 1;
               color: white;
               padding: 20px;
               box-sizing: border-box;

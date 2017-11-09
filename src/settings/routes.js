@@ -22,15 +22,19 @@ export default {
               padding: 0;
               margin: 0;
             }
+            .quantity{
+              position: absolute;
+            }
             img {
-              height: 50px;
-              width: 50px;
+              height: 100px;
+              width: 100px;
             }
             #price-value{
-              padding-top: 50px;
+              padding-top: 60px;
             }
             .a-price {
               padding: 20px;
+              position: relative;
             }
             .a-price:nth-child(even) {
               background: #546E7A;
@@ -80,6 +84,7 @@ export default {
               matchedPrice.forEach(function(price, i) {
                 layout += '<div class="a-price">' +
                 '<img src="' + "https://s3-us-west-2.amazonaws.com/ao2d/images/items/"+ price.ItemTypeId +'.png" />' +
+                '<div class="quantity">' + price.Amount + '</div>' +
                 '<p>Name: ' +
                 itemNameMap[price.ItemTypeId] +
                 '</p><p>Quantity: '

@@ -61,6 +61,15 @@ export default {
               matchedPrice = matchedPrice.sort(function(a, b) {
                 return parseFloat(a.UnitPriceSilver) - parseFloat(b.UnitPriceSilver);
               });
+              var foundIds = [];
+              var finalArray = [];
+              matchedPrice = matchedPrice.forEach(function(price, i) {
+                if (foundIds.indexOf(price.Id) === -1) {
+                  foundIds.push(price.Id);
+                  finalArray.push(price);
+                }
+              });
+              matchedPrice = finalArray;
               var layout = '';
               matchedPrice.forEach(function(price, i) {
                 layout += '<div class="a-price"><p>Name: ' +

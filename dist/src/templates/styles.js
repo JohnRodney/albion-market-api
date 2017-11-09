@@ -1,0 +1,6 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = "\n  <style>\n    *{\n      padding: 0;\n      margin: 0;\n    }\n    .quantity{\n      position: absolute;\n      top: 95px;\n      left: 94px;\n      width: 25px;\n      text-align: center;\n      padding 3px;\n      background: rgba(0, 0, 0, .2);\n      border-radius: 100%;\n    }\n    img {\n      height: 100px;\n      width: 100px;\n    }\n    #price-value{\n      padding-top: 60px;\n    }\n    .a-price {\n      padding: 20px;\n      position: relative;\n    }\n    .a-price:nth-child(even) {\n      background: #546E7A;\n      color: white;\n    }\n    .a-price:nth-child(odd) {\n      background: #607D8B;\n      color: white;\n    }\n    p {\n     font-size: 32px;\n    }\n    .a-price p, .a-price img {\n      display: inline-block;\n      padding: 10px;\n      vertical-align: middle;\n    }\n    .toolbar{\n      position: fixed;\n      width: 100%;\n      height: 60px;\n      background: #0097A7;\n      text-align: center;\n      z-index: 1;\n      color: white;\n      padding: 20px;\n      box-sizing: border-box;\n    }\n  </style>\n";

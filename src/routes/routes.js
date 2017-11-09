@@ -18,7 +18,7 @@ export const postEndpoint = (req, res) => {
 
 export const postGold = (req, res) => {
   /* parse the data from the query params */
-  const data = JSON.parse(req.query.data).GoldPrices;
+  const data = JSON.parse(req.query.data);
 
   /* insert all of the entries as single prices */
   MongoClient.connect(devMongoURI)

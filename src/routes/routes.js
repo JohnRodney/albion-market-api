@@ -12,6 +12,8 @@ export const postEndpoint = (req, res) => {
   MongoClient.connect(devMongoURI)
     .then((db) => db.collection('prices').insertMany(data))
     .catch(err => Promise.resolve(console.log(err)));
+
+  res.sendStatus(200);
 }
 
 export const mainPage = (req, res) => {

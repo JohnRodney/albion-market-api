@@ -41,17 +41,16 @@ var postEndpoint = exports.postEndpoint = function postEndpoint(req, res) {
 
 var postGold = exports.postGold = function postGold(req, res) {
   /* parse the data from the query params */
-  res.send('hello world');
 
-  /*
-   const data = JSON.parse(req.query.data);
-  
-   MongoClient.connect(devMongoURI)
-     .then((db) => db.collection('goldPrices').insert(data))
-     .catch(err => Promise.resolve(console.log(err)));
-  
-   res.sendStatus(200);
-   */
+  var data = JSON.parse(req.query.data);
+
+  _mongodb.MongoClient.connect(_devmongo2.default).then(function (db) {
+    return db.collection('goldPrices').insert(data);
+  }).catch(function (err) {
+    return Promise.resolve(console.log(err));
+  });
+
+  res.sendStatus(200);
 };
 
 var mainPage = exports.mainPage = function mainPage(req, res) {

@@ -10,6 +10,7 @@ MongoClient.connect(devMongoURI)
 */
 export const postEndpoint = (req, res) => {
   const data = JSON.parse(req.query.data).Orders;
+  console.log('writing to mongo', data)
   MongoClient.connect(devMongoURI)
     .then((db) => {
       db.collection('prices').insertMany(data);

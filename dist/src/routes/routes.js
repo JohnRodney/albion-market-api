@@ -22,6 +22,7 @@ MongoClient.connect(devMongoURI)
 */
 var postEndpoint = exports.postEndpoint = function postEndpoint(req, res) {
   var data = JSON.parse(req.query.data).Orders;
+  console.log('writing to mongo', data);
   _mongodb.MongoClient.connect(_devmongo2.default).then(function (db) {
     db.collection('prices').insertMany(data);
   }).catch(function (err) {

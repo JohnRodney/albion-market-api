@@ -24,6 +24,13 @@ export default {
             }
             .quantity{
               position: absolute;
+              top: 95px;
+              left: 94px;
+              width: 25px;
+              text-align: center;
+              padding 3px;
+              background: rgba(0, 0, 0, 0.5);
+              border-radius: 100%;
             }
             img {
               height: 100px;

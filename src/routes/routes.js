@@ -16,6 +16,18 @@ export const postEndpoint = (req, res) => {
   res.sendStatus(200);
 }
 
+export const postGold = (req, res) => {
+  /* parse the data from the query params */
+  const data = JSON.parse(req.query.data).GoldPrices;
+
+  /* insert all of the entries as single prices */
+  MongoClient.connect(devMongoURI)
+    .then((db) => db.collection('goldPrices').insertMany(data))
+    .catch(err => Promise.resolve(console.log(err)));
+
+  res.sendStatus(200);
+}
+
 export const mainPage = (req, res) => {
   getPrices()
     .then(prices => {

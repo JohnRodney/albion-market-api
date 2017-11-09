@@ -22,8 +22,12 @@ export default {
               padding: 0;
               margin: 0;
             }
-            .price-value{
-              margin-top: 20px;
+            img {
+              height: 50px;
+              width: 50px;
+            }
+            #price-value{
+              padding-top: 50px;
             }
             .a-price {
               padding: 20px;
@@ -36,9 +40,10 @@ export default {
               background: #607D8B;
               color: white;
             }
-            .a-price p {
-              display: inline;
+            .a-price p, .a-price img {
+              display: inline-block;
               padding: 10px;
+              vertical-align: middle;
             }
             .toolbar{
               position: fixed;
@@ -64,6 +69,7 @@ export default {
               var foundIds = [];
               var finalArray = [];
               matchedPrice = matchedPrice.forEach(function(price, i) {
+                console.log(price, foundIds, finalArray)
                 if (foundIds.indexOf(price.Id) === -1) {
                   foundIds.push(price.Id);
                   finalArray.push(price);
@@ -72,11 +78,14 @@ export default {
               matchedPrice = finalArray;
               var layout = '';
               matchedPrice.forEach(function(price, i) {
-                layout += '<div class="a-price"><p>Name: ' +
+                layout += '<div class="a-price">' +
+                '<img src="' + "https://s3-us-west-2.amazonaws.com/ao2d/images/items/"+ price.ItemTypeId +'.png" />' +
+                '<p>Name: ' +
                 itemNameMap[price.ItemTypeId] +
                 '</p><p>Quantity: '
                 + price.Amount
-                + '</p><p>Price: ' + price.UnitPriceSilver / 10000 + '</p></div>'
+                + '</p><p>Price: ' + price.UnitPriceSilver / 10000
+                + '</p>' + '</div>'
               });
               document.getElementById('price-value').innerHTML = layout;
             });

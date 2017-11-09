@@ -22,7 +22,7 @@ export const postGold = (req, res) => {
 
   /* insert all of the entries as single prices */
   MongoClient.connect(devMongoURI)
-    .then((db) => db.collection('goldPrices').insertMany(data))
+    .then((db) => db.collection('goldPrices').insert(data))
     .catch(err => Promise.resolve(console.log(err)));
 
   res.sendStatus(200);

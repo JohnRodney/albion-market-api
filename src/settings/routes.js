@@ -16,20 +16,65 @@ export default {
         let dropdown = '<select id="prices">';
         uniqueItemNames.forEach(name => dropdown += `<option value=${name}>${itemNameMap[name]}</option>`);
         dropdown += '</select>';
+        const style = `
+          <style>
+            *{
+              padding: 0;
+              margin: 0;
+            }
+            .price-value{
+              margin-top: 20px;
+            }
+            .a-price {
+              padding: 20px;
+            }
+            .a-price:nth-child(even) {
+              background: #546E7A;
+              color: white;
+            }
+            .a-price:nth-child(odd) {
+              background: #607D8B;
+              color: white;
+            }
+            .a-price p {
+              display: inline;
+              padding: 10px;
+            }
+            .toolbar{
+              position: fixed;
+              width: 100%;
+              height: 60px;
+              background: #0097A7;
+              text-align: center;
+              color: white;
+              padding: 20px;
+              box-sizing: border-box;
+            }
+          </style>
+        `
         const script = `
           <script>
             var itemNameMap = ${JSON.stringify(itemNameMap)};
             window.prices = ${JSON.stringify(prices)};
             document.addEventListener( "change", function(e) {
-              console.log(e.target.value);
-              var matchedPrice = window.prices.filter(p => p.ItemTypeId === e.target.value)[0];
-              console.log(matchedPrice.UnitPriceSilver / 10000)
-              document.getElementById('price-value').innerHTML = '<h1>Lowest Market Price: ' + matchedPrice.UnitPriceSilver / 10000 + '</h1>';
+              var matchedPrice = window.prices.filter(p => p.ItemTypeId === e.target.value);
+              matchedPrice = matchedPrice.sort(function(a, b) {
+                return parseFloat(a.UnitPriceSilver) - parseFloat(b.UnitPriceSilver);
+              });
+              var layout = '';
+              matchedPrice.forEach(function(price, i) {
+                layout += '<div class="a-price"><p>Name: ' +
+                itemNameMap[price.ItemTypeId] +
+                '</p><p>Quantity: '
+                + price.Amount
+                + '</p><p>Price: ' + price.UnitPriceSilver / 10000 + '</p></div>'
+              });
+              document.getElementById('price-value').innerHTML = layout;
             });
             console.log('hey bitches');
           </script>
-        `
-        res.send(`there are ${prices.length} prices recorded ${dropdown} ${script}<div id='price-value'></div>`)
+        `;
+        res.send(`<div class='toolbar'>there are ${prices.length} prices recorded ${dropdown}</div> ${style} ${script}<div id='price-value'></div>`)
       })
       .catch(err => Promise.resolve(console.log(err)));
   },
@@ -44,4 +89,3 @@ function getPrices() {
       });
   })
 }
-

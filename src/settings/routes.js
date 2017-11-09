@@ -8,6 +8,6 @@ import {
 
 export default {
   '/postMarket/': postEndpoint,
-  '/': mainPage,
   '/postGold/': postGold,
+  '/': mainPage,
 };

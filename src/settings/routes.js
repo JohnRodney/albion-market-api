@@ -29,7 +29,7 @@ export default {
               width: 25px;
               text-align: center;
               padding 3px;
-              background: rgba(0, 0, 0, 0.5);
+              background: rgba(0, 0, 0, .2);
               border-radius: 100%;
             }
             img {
@@ -69,6 +69,17 @@ export default {
           </style>
         `
         const script = `
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+          <script>
+            function removeImages() {
+               $("img").each(function(){
+                  var image = $(this);
+                  if(image.naturalWidth == 0 || image.readyState == 'uninitialized'){
+                     $(image).unbind("error").hide();
+                  }
+               });
+            };
+          </script>
           <script>
             var itemNameMap = ${JSON.stringify(itemNameMap)};
             window.prices = ${JSON.stringify(prices)};
@@ -90,7 +101,8 @@ export default {
               var layout = '';
               matchedPrice.forEach(function(price, i) {
                 layout += '<div class="a-price">' +
-                '<img src="' + "https://s3-us-west-2.amazonaws.com/ao2d/images/items/"+ price.ItemTypeId +'.png" />' +
+                '<img src="' + "https://s3-us-west-2.amazonaws.com/ao2d/images/items/"+ price.ItemTypeId +'.png" onError="this.onerror=null;this.remove();"/>' +
+                '<img src="' + "https://gameinfo.albiononline.com/api/gameinfo/items/"+ price.ItemTypeId +'.png" onError="this.onerror=null;this.remove();" />' +
                 '<div class="quantity">' + price.Amount + '</div>' +
                 '<p>Name: ' +
                 itemNameMap[price.ItemTypeId] +
@@ -101,7 +113,6 @@ export default {
               });
               document.getElementById('price-value').innerHTML = layout;
             });
-            console.log('hey bitches');
           </script>
         `;
         res.send(`<div class='toolbar'>there are ${prices.length} prices recorded ${dropdown}</div> ${style} ${script}<div id='price-value'></div>`)

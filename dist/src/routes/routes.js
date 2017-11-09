@@ -45,8 +45,8 @@ var mainPage = exports.mainPage = function mainPage(req, res) {
     var uniqueItemNames = itemNames.filter(function (itemName, i) {
       return itemNames.indexOf(itemName) === i;
     }).sort();
-    var script = (0, _mainSearch2.default)(_items2.default, prices);
-    res.send(getResponseLayout(prices, getDropDown(uniqueItemNames, _items2.default), script));
+
+    res.send(getResponseLayout(prices, getDropDown(uniqueItemNames, _items2.default), (0, _mainSearch2.default)(_items2.default, prices)));
   }).catch(function (err) {
     return Promise.resolve(console.log(err));
   });

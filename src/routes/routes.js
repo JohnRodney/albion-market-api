@@ -19,8 +19,12 @@ export const mainPage = (req, res) => {
     .then(prices => {
       const itemNames = prices.map(price => price.ItemTypeId);
       const uniqueItemNames = itemNames.filter((itemName, i) => itemNames.indexOf(itemName) === i).sort();
-      const script = searchScript(itemNameMap, prices);
-      res.send(getResponseLayout(prices, getDropDown(uniqueItemNames, itemNameMap), script))
+
+      res.send(getResponseLayout(
+        prices,
+        getDropDown(uniqueItemNames, itemNameMap),
+        searchScript(itemNameMap, prices),
+      ));
     })
     .catch(err => Promise.resolve(console.log(err)));
 }

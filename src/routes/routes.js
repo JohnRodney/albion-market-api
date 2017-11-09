@@ -19,6 +19,7 @@ export const postEndpoint = (req, res) => {
 export const postGold = (req, res) => {
   /* parse the data from the query params */
     res.send('hello world');
+	
 	/*
   const data = JSON.parse(req.query.data);
 

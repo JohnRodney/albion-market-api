@@ -18,9 +18,7 @@ export const postEndpoint = (req, res) => {
 
 export const postGold = (req, res) => {
   /* parse the data from the query params */
-    res.send('hello world');
-	
-	/*
+
   const data = JSON.parse(req.query.data);
 
   MongoClient.connect(devMongoURI)
@@ -28,7 +26,7 @@ export const postGold = (req, res) => {
     .catch(err => Promise.resolve(console.log(err)));
 
   res.sendStatus(200);
-  */
+  
 }
 
 export const mainPage = (req, res) => {

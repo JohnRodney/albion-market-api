@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = searchScript;
+/* Generate an html layout from a single price data entry */
 function layoutFromPrice(price) {
   return '\n    <div class="a-price">\n      <img src="' + ('https://s3-us-west-2.amazonaws.com/ao2d/images/items/' + price.ItemTypeId + '.png') + '" onError="this.onerror=null;this.remove();"/>\n      <img src="' + ('https://gameinfo.albiononline.com/api/gameinfo/items/' + price.ItemTypeId + '.png') + '" onError="this.onerror=null;this.remove();"/>\n      <div class="quantity">' + price.Amount + '</div>\n      <p>' + price.UnitPriceSilver / 10000 + ' silver</p>\n    </div>\n  ';
 }
@@ -31,10 +32,13 @@ function handleDropDownChange(e) {
     }
   });
 
+  /* start with an empty layout */
   var pricesLayout = '';
+  /* iterate over all unique prices and append a price layout */
   finalArray.forEach(function (price, i) {
     return pricesLayout += layoutFromPrice(price);
   });
+  /* set the HTML if #price-value to the final layout of prices */
   document.getElementById('price-value').innerHTML = pricesLayout;
 }
 

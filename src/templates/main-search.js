@@ -1,3 +1,4 @@
+/* Generate an html layout from a single price data entry */
 function layoutFromPrice(price) {
   return `
     <div class="a-price">
@@ -29,8 +30,11 @@ function handleDropDownChange(e) {
     }
   });
 
+  /* start with an empty layout */
   let pricesLayout = '';
+  /* iterate over all unique prices and append a price layout */
   finalArray.forEach((price, i) => pricesLayout += layoutFromPrice(price));
+  /* set the HTML if #price-value to the final layout of prices */
   document.getElementById('price-value').innerHTML = pricesLayout;
 }
 

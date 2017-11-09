@@ -7,5 +7,5 @@ import {
 
 export default {
   '/postMarket/': postEndpoint,
-  '*': mainPage,
+  '/': mainPage,
 };

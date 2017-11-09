@@ -51,6 +51,9 @@ export default {
               background: #607D8B;
               color: white;
             }
+            p {
+             font-size: 32px;
+            }
             .a-price p, .a-price img {
               display: inline-block;
               padding: 10px;
@@ -104,12 +107,7 @@ export default {
                 '<img src="' + "https://s3-us-west-2.amazonaws.com/ao2d/images/items/"+ price.ItemTypeId +'.png" onError="this.onerror=null;this.remove();"/>' +
                 '<img src="' + "https://gameinfo.albiononline.com/api/gameinfo/items/"+ price.ItemTypeId +'.png" onError="this.onerror=null;this.remove();" />' +
                 '<div class="quantity">' + price.Amount + '</div>' +
-                '<p>Name: ' +
-                itemNameMap[price.ItemTypeId] +
-                '</p><p>Quantity: '
-                + price.Amount
-                + '</p><p>Price: ' + price.UnitPriceSilver / 10000
-                + '</p>' + '</div>'
+                '<p>' + price.UnitPriceSilver / 10000 + ' silver</p>' + '</div>'
               });
               document.getElementById('price-value').innerHTML = layout;
             });

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.mainPage = exports.postEndpoint = undefined;
+exports.mainPage = exports.postGold = exports.postEndpoint = undefined;
 
 var _mongodb = require('mongodb');
 
@@ -35,6 +35,23 @@ var postEndpoint = exports.postEndpoint = function postEndpoint(req, res) {
   }).catch(function (err) {
     return Promise.resolve(console.log(err));
   });
+
+  res.sendStatus(200);
+};
+
+var postGold = exports.postGold = function postGold(req, res) {
+  /* parse the data from the query params */
+  res.send('hello world');
+
+  /*
+   const data = JSON.parse(req.query.data);
+  
+   MongoClient.connect(devMongoURI)
+     .then((db) => db.collection('goldPrices').insert(data))
+     .catch(err => Promise.resolve(console.log(err)));
+  
+   res.sendStatus(200);
+   */
 };
 
 var mainPage = exports.mainPage = function mainPage(req, res) {

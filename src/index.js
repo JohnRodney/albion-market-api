@@ -1,12 +1,21 @@
 import express from 'express';
-import routesHash from './settings/routes';
+import routesHashPost from './settings/routesPost';
+import routesHashGet from './settings/routesGet';
 import port from './settings/port';
+import bodyParser from 'body-parser';
+
 
 const app = express();
 const router = express.Router();
 
-Object.keys(routesHash).forEach(route => router.get(route, routesHash[route]));
 
+
+
+
+Object.keys(routesHashGet).forEach(route => router.get(route, routesHashGet[route]));
+Object.keys(routesHashPost).forEach(route => router.post(route, routesHashPost[route]));
+
+app.use(bodyParser.json())
 app.use(router);
 app.listen(port);
 

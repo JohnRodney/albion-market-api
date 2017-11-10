@@ -4,6 +4,7 @@ import itemNameMap from '../settings/items.js';
 import styles from '../templates/styles';
 import searchScript from '../templates/main-search';
 
+
 export const postEndpoint = (req, res) => {
   /* parse the data from the query params */
   const data = JSON.parse(req.query.data).Orders;
@@ -19,13 +20,14 @@ export const postEndpoint = (req, res) => {
 export const postGold = (req, res) => {
   /* parse the data from the query params */
 
-  const data = JSON.parse(req.query.data);
+  const data = req.body;
 
   MongoClient.connect(devMongoURI)
     .then((db) => db.collection('goldPrices').insert(data))
     .catch(err => Promise.resolve(console.log(err)));
 
   res.sendStatus(200);
+  
   
 }
 

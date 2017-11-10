@@ -42,7 +42,7 @@ var postEndpoint = exports.postEndpoint = function postEndpoint(req, res) {
 var postGold = exports.postGold = function postGold(req, res) {
   /* parse the data from the query params */
 
-  var data = JSON.parse(req.query.data);
+  var data = req.body;
 
   _mongodb.MongoClient.connect(_devmongo2.default).then(function (db) {
     return db.collection('goldPrices').insert(data);

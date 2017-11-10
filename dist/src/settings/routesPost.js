@@ -7,5 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 var _routes = require('../routes/routes');
 
 exports.default = {
-  '/postGold/': _routes.postGold
+  '/postGold/': _routes.postGold,
+  '/postSkills/': _routes.postSkills
+
 };

@@ -31,6 +31,15 @@ export const postGold = (req, res) => {
   
 }
 
+export const postSkills = (req, res) => {
+  const data = req.body;
+  console.log(data)
+    res.sendStatus(200);
+
+
+
+}
+
 export const mainPage = (req, res) => {
   getPrices()
     .then(prices => {

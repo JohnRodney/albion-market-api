@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.mainPage = exports.postGold = exports.postEndpoint = undefined;
+exports.mainPage = exports.postSkills = exports.postGold = exports.postEndpoint = undefined;
 
 var _mongodb = require('mongodb');
 
@@ -50,6 +50,12 @@ var postGold = exports.postGold = function postGold(req, res) {
     return Promise.resolve(console.log(err));
   });
 
+  res.sendStatus(200);
+};
+
+var postSkills = exports.postSkills = function postSkills(req, res) {
+  var data = req.body;
+  console.log(data);
   res.sendStatus(200);
 };
 

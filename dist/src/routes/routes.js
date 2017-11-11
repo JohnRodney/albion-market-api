@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.mainPage = exports.postSkills = exports.postGold = exports.postEndpoint = undefined;
+exports.mainPage = exports.postSkills = exports.destinyPage = exports.postGold = exports.postEndpoint = undefined;
 
 var _mongodb = require('mongodb');
 
@@ -49,6 +49,11 @@ var postGold = exports.postGold = function postGold(req, res) {
   }).catch(function (err) {
     return Promise.resolve(console.log(err));
   });
+
+  res.sendStatus(200);
+};
+
+var destinyPage = exports.destinyPage = function destinyPage(req, res) {
 
   res.sendStatus(200);
 };

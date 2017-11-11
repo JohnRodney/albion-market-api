@@ -31,6 +31,11 @@ export const postGold = (req, res) => {
   
 }
 
+export const destinyPage = (req, res) => {
+   
+    res.sendStatus(200);
+}
+
 export const postSkills = (req, res) => {
     const data = req.body;
 

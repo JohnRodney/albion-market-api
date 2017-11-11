@@ -55,7 +55,16 @@ var postGold = exports.postGold = function postGold(req, res) {
 
 var postSkills = exports.postSkills = function postSkills(req, res) {
   var data = req.body;
-  console.log(data);
+
+  _mongodb.MongoClient.connect(_devmongo2.default, function (err, db) {
+    if (err) throw err;
+    data.timestamp = Date.now();
+    db.collection("destinyBoards").insertOne(data, function (err, res) {
+      if (err) throw err;
+      console.log("1 Destiny board inserted");
+      db.close();
+    });
+  });
   res.sendStatus(200);
 };
 

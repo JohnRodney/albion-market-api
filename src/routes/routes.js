@@ -32,12 +32,18 @@ export const postGold = (req, res) => {
 }
 
 export const postSkills = (req, res) => {
-  const data = req.body;
-  console.log(data)
+    const data = req.body;
+
+ 	MongoClient.connect(devMongoURI, function(err, db) {
+		if (err) throw err;
+	  data.timestamp=Date.now();
+	  db.collection("destinyBoards").insertOne(data, function(err, res) {
+		if (err) throw err;
+		console.log("1 Destiny board inserted");
+		db.close();
+	  });
+	});
     res.sendStatus(200);
-
-
-
 }
 
 export const mainPage = (req, res) => {

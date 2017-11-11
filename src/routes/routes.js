@@ -3,6 +3,7 @@ import devMongoURI from '../settings/devmongo';
 import itemNameMap from '../settings/items.js';
 import styles from '../templates/styles';
 import searchScript from '../templates/main-search';
+import destinyScript from '../templates/destiny-search';
 
 
 export const postEndpoint = (req, res) => {
@@ -32,8 +33,19 @@ export const postGold = (req, res) => {
 }
 
 export const destinyPage = (req, res) => {
-   
-    res.sendStatus(200);
+    getBoards()
+    .then(boards => {
+      const playerNames = boards.map(board => board.player);
+      const uniquePlayerNames = playerNames.filter((playerName, i) => playerNames.indexOf(playerName) === i).sort();
+
+      res.send(getResponseLayout2(
+        boards,
+        getDropDown2(uniquePlayerNames),
+		destinyScript(boards),
+      ));
+    })
+    .catch(err => Promise.resolve(console.log(err)));
+
 }
 
 export const postSkills = (req, res) => {
@@ -72,6 +84,12 @@ function getDropDown(uniqueItemNames, itemNameMap) {
   dropdown += '</select>';
   return dropdown;
 }
+function getDropDown2(uniqueItemNames) {
+  let dropdown = '<select id="players">';
+  uniqueItemNames.forEach(name => dropdown += `<option value=${name}>${name}</option>`);
+  dropdown += '</select>';
+  return dropdown;
+}
 
 function getResponseLayout(prices, dropdown, script) {
   return `
@@ -83,7 +101,17 @@ function getResponseLayout(prices, dropdown, script) {
     ${script}
   `;
 }
-
+function getResponseLayout2(prices, dropdown,script) {
+	var newlen= prices.length/2;
+  return `
+    <div class='toolbar'>
+      there are ${newlen} Destiny Boards recorded ${dropdown}
+    </div>
+    <div id='price-value'></div>
+    ${styles}
+	${script}
+  `;
+}
 function getPrices() {
   return new Promise((res, rej) => {
     MongoClient.connect(devMongoURI)
@@ -92,4 +120,18 @@ function getPrices() {
         prices.then(p => res(p))
       });
   })
+}
+function getBoards(){
+	return new Promise((res, rej) => {
+    MongoClient.connect(devMongoURI)
+      .then((db) => {
+        const boards = db.collection('destinyBoards').find().toArray();
+        boards.then(p => res(p))
+      });
+  })
+	
+	
+	
+	
+	
 }

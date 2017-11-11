@@ -10,9 +10,9 @@ function layoutFromPrice(price) {
   `;
 }
 
-function handleDropDownChange(e) {
+function handleDestinyDropDownChange(e) {
   /* find the matching prices */
-  let matchedPrice = window.prices.filter(p => p.ItemTypeId === e.target.value);
+  let matched = window.prices.filter(p => p.ItemTypeId === e.target.value);
 
   /* Sort the matching prices */
   matchedPrice = matchedPrice
@@ -38,13 +38,11 @@ function handleDropDownChange(e) {
   document.getElementById('price-value').innerHTML = pricesLayout;
 }
 
-export default function searchScript(itemNameMap, prices) {
+export default function destinyboard(destinyboards) {
   return `
     <script>
-      var itemNameMap = ${JSON.stringify(itemNameMap)};
-      window.prices = ${JSON.stringify(prices)};
-      window.layoutFromPrice = ${layoutFromPrice};
-      document.addEventListener("change", ${handleDropDownChange});
+      window.destinyboards = ${JSON.stringify(destinyboards)};
+      document.addEventListener("change", ${handleDestinyDropDownChange});
     </script>
   `
 }

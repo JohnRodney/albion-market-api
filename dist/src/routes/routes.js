@@ -23,6 +23,10 @@ var _mainSearch = require('../templates/main-search');
 
 var _mainSearch2 = _interopRequireDefault(_mainSearch);
 
+var _destinySearch = require('../templates/destiny-search');
+
+var _destinySearch2 = _interopRequireDefault(_destinySearch);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var postEndpoint = exports.postEndpoint = function postEndpoint(req, res) {
@@ -54,8 +58,18 @@ var postGold = exports.postGold = function postGold(req, res) {
 };
 
 var destinyPage = exports.destinyPage = function destinyPage(req, res) {
+  getBoards().then(function (boards) {
+    var playerNames = boards.map(function (board) {
+      return board.player;
+    });
+    var uniquePlayerNames = playerNames.filter(function (playerName, i) {
+      return playerNames.indexOf(playerName) === i;
+    }).sort();
 
-  res.sendStatus(200);
+    res.send(getResponseLayout2(boards, getDropDown2(uniquePlayerNames), (0, _destinySearch2.default)(boards)));
+  }).catch(function (err) {
+    return Promise.resolve(console.log(err));
+  });
 };
 
 var postSkills = exports.postSkills = function postSkills(req, res) {
@@ -96,16 +110,37 @@ function getDropDown(uniqueItemNames, itemNameMap) {
   dropdown += '</select>';
   return dropdown;
 }
+function getDropDown2(uniqueItemNames) {
+  var dropdown = '<select id="players">';
+  uniqueItemNames.forEach(function (name) {
+    return dropdown += '<option value=' + name + '>' + name + '</option>';
+  });
+  dropdown += '</select>';
+  return dropdown;
+}
 
 function getResponseLayout(prices, dropdown, script) {
   return '\n    <div class=\'toolbar\'>\n      there are ' + prices.length + ' prices recorded ' + dropdown + '\n    </div>\n    <div id=\'price-value\'></div>\n    ' + _styles2.default + '\n    ' + script + '\n  ';
 }
-
+function getResponseLayout2(prices, dropdown, script) {
+  var newlen = prices.length / 2;
+  return '\n    <div class=\'toolbar\'>\n      there are ' + newlen + ' Destiny Boards recorded ' + dropdown + '\n    </div>\n    <div id=\'price-value\'></div>\n    ' + _styles2.default + '\n\t' + script + '\n  ';
+}
 function getPrices() {
   return new Promise(function (res, rej) {
     _mongodb.MongoClient.connect(_devmongo2.default).then(function (db) {
       var prices = db.collection('prices').find().toArray();
       prices.then(function (p) {
+        return res(p);
+      });
+    });
+  });
+}
+function getBoards() {
+  return new Promise(function (res, rej) {
+    _mongodb.MongoClient.connect(_devmongo2.default).then(function (db) {
+      var boards = db.collection('destinyBoards').find().toArray();
+      boards.then(function (p) {
         return res(p);
       });
     });

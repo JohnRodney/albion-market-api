@@ -76,13 +76,23 @@ var postSkills = exports.postSkills = function postSkills(req, res) {
   var data = req.body;
 
   _mongodb.MongoClient.connect(_devmongo2.default, function (err, db) {
-    if (err) throw err;
-    data.timestamp = Date.now();
-    db.collection("destinyBoards").insertOne(data, function (err, res) {
+    var query = { player: data.player };
+    db.collection("destinyBoards").find(query).toArray(function (err, result) {
       if (err) throw err;
-      console.log("1 Destiny board inserted");
+      console.log(result);
       db.close();
     });
+
+    /*
+    if (err) throw err;
+     data.timestamp=Date.now();
+     db.collection("destinyBoards").insertOne(data, function(err, res) {
+    if (err) throw err;
+    console.log("1 Destiny board inserted");
+    db.close();
+     });
+     
+     */
   });
   res.sendStatus(200);
 };

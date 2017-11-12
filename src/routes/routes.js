@@ -52,6 +52,16 @@ export const postSkills = (req, res) => {
     const data = req.body;
 
  	MongoClient.connect(devMongoURI, function(err, db) {
+		var query = { player: data.player };
+		db.collection("destinyBoards").find(query).toArray(function(err, result) {
+			if (err) throw err;
+			console.log(result);
+			db.close();
+		});
+		
+		
+		
+		/*
 		if (err) throw err;
 	  data.timestamp=Date.now();
 	  db.collection("destinyBoards").insertOne(data, function(err, res) {
@@ -59,6 +69,8 @@ export const postSkills = (req, res) => {
 		console.log("1 Destiny board inserted");
 		db.close();
 	  });
+	  
+	  */
 	});
     res.sendStatus(200);
 }

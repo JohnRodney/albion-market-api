@@ -19,4 +19,9 @@ app.use(bodyParser.json())
 app.use(router);
 app.listen(port);
 
+var http = require("http");
+setInterval(function() {
+    http.get("http://albion-data-revival.herokuapp.com");
+}, 300000); // every 5 minutes (300000)
+
 process.on('SIGTERM', e => process.exit(0));

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.mainPage = exports.postSkills = exports.destinyPage = exports.getPriceOfItem = exports.postGold = exports.postEndpoint = undefined;
+exports.mainPage = exports.postSkills = exports.getPlayerBoardsBySkill = exports.destinyPage = exports.getPriceOfItem = exports.postGold = exports.postEndpoint = undefined;
 
 var _mongodb = require('mongodb');
 
@@ -77,6 +77,15 @@ var destinyPage = exports.destinyPage = function destinyPage(req, res) {
 		}).sort();
 
 		res.send(getResponseLayout2(boards, getDropDown2(uniquePlayerNames), (0, _destinySearch2.default)(boards)));
+	}).catch(function (err) {
+		return Promise.resolve(console.log(err));
+	});
+};
+
+var getPlayerBoardsBySkill = exports.getPlayerBoardsBySkill = function getPlayerBoardsBySkill(req, res) {
+
+	getBoardsBySkill(req.params.sid).then(function (boards) {
+		res.send(boards);
 	}).catch(function (err) {
 		return Promise.resolve(console.log(err));
 	});
@@ -266,6 +275,18 @@ function getBoards() {
 	return new Promise(function (res, rej) {
 		_mongodb.MongoClient.connect(_devmongo2.default).then(function (db) {
 			var boards = db.collection('destinyBoards').find().toArray();
+			boards.then(function (p) {
+				return res(p);
+			});
+		});
+	});
+}
+function getBoardsBySkill(SID) {
+	return new Promise(function (res, rej) {
+		_mongodb.MongoClient.connect(_devmongo2.default).then(function (db) {
+			var query = { SID: SID };
+			var mysort = { SLVL: 1 };
+			var boards = db.collection('destinyBoards').find(query).sort(mysort).toArray();
 			boards.then(function (p) {
 				return res(p);
 			});

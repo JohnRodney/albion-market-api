@@ -3,7 +3,7 @@ import {
   postEndpoint,
   mainPage,
   destinyPage,
-  getBoardsBySkill,
+  getPlayerBoardsBySkill,
   getPriceOfItem
 } from '../routes/routes';
 
@@ -13,7 +13,7 @@ export default {
   '/postMarket/': postEndpoint,	
   '/destiny/': destinyPage,
   '/item/:item': getPriceOfItem,
-  '/destiny/:sid':getBoardsBySkill,
+  '/destiny/:sid': getPlayerBoardsBySkill,
   '/': mainPage,
 };
 

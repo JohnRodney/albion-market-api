@@ -60,9 +60,9 @@ export const destinyPage = (req, res) => {
 
 }
 
-export const getBoardsBySkill = (req, res) => {
+export const getPlayerBoardsBySkill = (req, res) => {
 	
-    getBoardsBySkill(req.params.sid);
+    getBoardsBySkill(req.params.sid)
     .then(boards => {
 		res.send(boards);
     })

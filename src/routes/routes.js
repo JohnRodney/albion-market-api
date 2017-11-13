@@ -60,6 +60,16 @@ export const destinyPage = (req, res) => {
 
 }
 
+export const getBoardsBySkill = (req, res) => {
+	
+    getBoardsBySkill(req.params.sid);
+    .then(boards => {
+		res.send(boards);
+    })
+    .catch(err => Promise.resolve(console.log(err)));
+
+}
+
 export const postSkills = (req, res) => {
     const data = req.body;
 //console.log(data.skills.length);
@@ -264,6 +274,17 @@ function getBoards(){
         const boards = db.collection('destinyBoards').find().toArray();
         boards.then(p => res(p))
       });
+  })
+}
+function getBoardsBySkill(SID){
+	return new Promise((res, rej) => {
+		MongoClient.connect(devMongoURI)
+		.then((db) => {
+			var query = { SID: SID };
+			var mysort = { SLVL: 1 };
+			const boards = db.collection('destinyBoards').find(query).sort(mysort).toArray();
+			boards.then(p => res(p));
+		});
   })
 }
 function delayedprocess(data, req, res){

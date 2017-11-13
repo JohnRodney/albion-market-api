@@ -2,7 +2,8 @@
 import {
   postEndpoint,
   mainPage,
-  destinyPage
+  destinyPage,
+  getPriceOfItem
 } from '../routes/routes';
 
 
@@ -10,6 +11,7 @@ import {
 export default {
   '/postMarket/': postEndpoint,	
   '/destiny/': destinyPage,
+  '/item/:item': getPriceOfItem,
   '/': mainPage,
 };
 

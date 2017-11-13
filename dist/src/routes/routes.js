@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.mainPage = exports.postSkills = exports.destinyPage = exports.postGold = exports.postEndpoint = undefined;
+exports.mainPage = exports.postSkills = exports.destinyPage = exports.getPriceOfItem = exports.postGold = exports.postEndpoint = undefined;
 
 var _mongodb = require('mongodb');
 
@@ -55,6 +55,16 @@ var postGold = exports.postGold = function postGold(req, res) {
 	});
 
 	res.sendStatus(200);
+};
+
+var getPriceOfItem = exports.getPriceOfItem = function getPriceOfItem(req, res) {
+	/* parse the data from the query params */
+
+	getItemPrices(req.params.item).then(function (prices) {
+		res.send(prices);
+	}).catch(function (err) {
+		return Promise.resolve(console.log(err));
+	});
 };
 
 var destinyPage = exports.destinyPage = function destinyPage(req, res) {
@@ -180,6 +190,34 @@ function getPrices() {
 	return new Promise(function (res, rej) {
 		_mongodb.MongoClient.connect(_devmongo2.default).then(function (db) {
 			var prices = db.collection('prices').find().toArray();
+			prices.then(function (p) {
+				return res(p);
+			});
+		});
+	});
+}
+
+function getItemPrices(item) {
+	var query = { ItemTypeId: item };
+	var fields = {
+		"ItemTypeId": true,
+		"LocationId": true,
+		"QualityLevel": true,
+		"EnchantmentLevel": true,
+		"UnitPriceSilver": true,
+		"Amount": true,
+		"AuctionType": true,
+		"Expires": true
+	};
+
+	var options = {
+		"limit": 1,
+		"sort": [['UnitPriceSilver', 'asc']]
+	};
+
+	return new Promise(function (res, rej) {
+		_mongodb.MongoClient.connect(_devmongo2.default).then(function (db) {
+			var prices = db.collection('prices').findOne(query, fields, options);
 			prices.then(function (p) {
 				return res(p);
 			});

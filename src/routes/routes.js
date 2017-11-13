@@ -32,6 +32,18 @@ export const postGold = (req, res) => {
   
 }
 
+export const getPriceOfItem = (req, res) => {
+  /* parse the data from the query params */
+  
+  getItemPrices(req.params.item)
+    .then(prices => {
+      res.send(prices);
+    })
+    .catch(err => Promise.resolve(console.log(err)));
+  
+  
+}
+
 export const destinyPage = (req, res) => {
     getBoards()
     .then(boards => {
@@ -173,6 +185,34 @@ function getPrices() {
     MongoClient.connect(devMongoURI)
       .then((db) => {
         const prices = db.collection('prices').find().toArray();
+        prices.then(p => res(p))
+      });
+  })
+}
+
+
+function getItemPrices(item){
+	var query = { ItemTypeId: item };
+	var fields = {
+		"ItemTypeId": true,
+		"LocationId": true,
+		"QualityLevel": true,
+		"EnchantmentLevel": true,
+		"UnitPriceSilver": true,
+		"Amount": true,
+		"AuctionType": true,
+		"Expires": true
+	}
+	
+	var options = {
+		"limit":1,
+		"sort": [['UnitPriceSilver','asc']]		
+	}
+
+	return new Promise((res, rej) => {
+    MongoClient.connect(devMongoURI)
+      .then((db) => {
+        const prices = db.collection('prices').findOne(query,fields,options);
         prices.then(p => res(p))
       });
   })

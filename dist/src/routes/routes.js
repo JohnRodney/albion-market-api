@@ -91,18 +91,29 @@ var postSkills = exports.postSkills = function postSkills(req, res) {
 	//		delayedprocess(data,req,res)
 	//	}, 30000);
 
-
+	//console.log(data);
 	_mongodb.MongoClient.connect(_devmongo2.default, function (err, db) {
-		var bulk = db.items.initializeUnorderedBulkOp();
+		var bulk = db.collection("destinyBoards").initializeUnorderedBulkOp();
+		console.log(data.skills.length);
+		var updatefield = {};
 		for (var i = 0, len = data.skills.length; i < len; i++) {
-			bulk.find({ player: data.player, SID: data.skills[i].SID }).upsert().update({
-				player: data.player,
-				SID: data.skills[i].SID,
-				SLVL: data.skills[i].SLVL,
-				SPER: data.skills[i].SPER
-			});
+			var query = { player: data.player, SID: data.skills[i].SID };
+			updatefield = {
+				$set: {
+					player: data.player,
+					SID: data.skills[i].SID,
+					SLVL: data.skills[i].SLVL,
+					SPER: data.skills[i].SPER
+				}
+			};
+
+			if (Object.keys(updatefield).length) {
+				bulk.find(query).upsert().update(updatefield);
+			}
 		}
-		bulk.execute();
+		setTimeout(function () {
+			bulk.execute();
+		}, 10000);
 	});
 
 	/*

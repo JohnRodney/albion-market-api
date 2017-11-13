@@ -50,7 +50,7 @@ export const destinyPage = (req, res) => {
 
 export const postSkills = (req, res) => {
     const data = req.body;
-console.log(data.skills.length);
+//console.log(data.skills.length);
 
 	if(data.skills.length >70){
 		setTimeout(function() {
@@ -192,8 +192,8 @@ function delayedprocess(data, req, res){
 			var query = { player: data.player };
 			db.collection("destinyBoards").find(query).toArray(function(err, result) {
 				if (err) throw err;
-				console.log("in deleayed");
-				console.log("result lenght:"+result.length);
+				//console.log("in deleayed");
+				//console.log("result lenght:"+result.length);
 				if(result.length ==1){
 					console.log("Updated 1 player's destiny board: "+data.player);
 					//get ida
@@ -219,11 +219,11 @@ function delayedprocess(data, req, res){
 							}
 						}
 					)
-console.log("update done");
+//console.log("update done");
 
 				}else{
 					//do insert
-					console.log("do insert");
+					//console.log("do insert");
 					//add the timestamp
 					data.timestamp=Date.now();
 					
@@ -241,7 +241,7 @@ console.log("update done");
 							console.log(data);
 						}
 					});
-						console.log("insert done");
+					//	console.log("insert done");
 				}
 				//console.log(result);
 				db.close();

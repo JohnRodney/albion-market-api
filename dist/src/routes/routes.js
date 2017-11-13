@@ -107,7 +107,7 @@ var postSkills = exports.postSkills = function postSkills(req, res) {
 
 
 					for (var i = 0, len = data.skills.length; i < len; i++) {
-						skills[data.skills[i].SID] = data.skills[i];
+						skills[i] = data.skills[i];
 					}
 
 					//and do update
@@ -127,7 +127,7 @@ var postSkills = exports.postSkills = function postSkills(req, res) {
 					// fix skill structure
 					var newskills = {};
 					for (var i = 0, len = data.skills.length; i < len; i++) {
-						newskills[data.skills[i].SID] = data.skills[i];
+						newskills[i] = data.skills[i];
 					}
 					data.skills = newskills;
 
@@ -253,7 +253,7 @@ function delayedprocess(data, req, res) {
 
 
 				for (var i = 0, len = data.skills.length; i < len; i++) {
-					skills[data.skills[i].SID] = data.skills[i];
+					skills[i] = data.skills[i];
 				}
 
 				//and do update
@@ -274,7 +274,7 @@ function delayedprocess(data, req, res) {
 				// fix skill structure
 				var newskills = {};
 				for (var i = 0, len = data.skills.length; i < len; i++) {
-					newskills[data.skills[i].SID] = data.skills[i];
+					newskills[i] = data.skills[i];
 				}
 				data.skills = newskills;
 

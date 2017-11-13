@@ -64,15 +64,42 @@ export const postSkills = (req, res) => {
     const data = req.body;
 //console.log(data.skills.length);
 
-	if(data.skills.length >70){
-		setTimeout(function() {
-			delayedprocess(data,req,res)
-		}, 30000);
+	//if(data.skills.length >70){
+	//	setTimeout(function() {
+	//		delayedprocess(data,req,res)
+	//	}, 30000);
 
-	}else{
+	
+		MongoClient.connect(devMongoURI, function(err, db) {
+			var bulk = db.items.initializeUnorderedBulkOp();
+			for (var i = 0, len = data.skills.length; i < len; i++) {
+				bulk.find( { player: data.player, SID:data.skills[i].SID} ).upsert().update(
+				{
+					player: data.player,
+					SID: data.skills[i].SID,
+					SLVL: data.skills[i].SLVL,
+					SPER: data.skills[i].SPER,
+				});
+			}	
+			bulk.execute();
+		});
+
+		
+		
+		
+		/*
+		
 		MongoClient.connect(devMongoURI, function(err, db) {
 			var query = { player: data.player };
-			db.collection("destinyBoards").find(query).toArray(function(err, result) {
+			
+			
+			
+			
+			
+			db.collection("destinyBoards").update({ _id: id },
+			
+			
+			find(query).toArray(function(err, result) {
 				if (err) throw err;
 				//console.log(result.length);
 				if(result.length ==1){
@@ -127,7 +154,8 @@ export const postSkills = (req, res) => {
 				db.close();
 			});
 		});
-	}
+		*/
+	
     res.sendStatus(200);
 }
 
@@ -227,7 +255,7 @@ function getBoards(){
   })
 }
 function delayedprocess(data, req, res){
-	
+/*	
 			MongoClient.connect(devMongoURI, function(err, db) {
 			var query = { player: data.player };
 			db.collection("destinyBoards").find(query).toArray(function(err, result) {
@@ -245,7 +273,7 @@ function delayedprocess(data, req, res){
 					
 
 					for (var i = 0, len = data.skills.length; i < len; i++) {
-						skills[i]=data.skills[i];
+						skills[]=data.skills[i];
 					}								
 									
 					//and do update
@@ -287,4 +315,5 @@ function delayedprocess(data, req, res){
 				db.close();
 			});
 		});	
+		*/
 }

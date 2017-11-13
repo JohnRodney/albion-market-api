@@ -86,64 +86,91 @@ var postSkills = exports.postSkills = function postSkills(req, res) {
 	var data = req.body;
 	//console.log(data.skills.length);
 
-	if (data.skills.length > 70) {
-		setTimeout(function () {
-			delayedprocess(data, req, res);
-		}, 30000);
-	} else {
-		_mongodb.MongoClient.connect(_devmongo2.default, function (err, db) {
-			var query = { player: data.player };
-			db.collection("destinyBoards").find(query).toArray(function (err, result) {
-				if (err) throw err;
-				//console.log(result.length);
-				if (result.length == 1) {
-					console.log("Updated 1 player's destiny board: " + data.player);
-					//get ida
-					var id = result[0]['_id'];
-					var skills = result[0]['skills'];
-					//console.log(skills);			
-					//grab current skills
-					//update skills
+	//if(data.skills.length >70){
+	//	setTimeout(function() {
+	//		delayedprocess(data,req,res)
+	//	}, 30000);
 
 
-					for (var i = 0, len = data.skills.length; i < len; i++) {
-						skills[i] = data.skills[i];
-					}
-
-					//and do update
-
-					db.collection("destinyBoards").update({ _id: id }, {
-						$set: {
-							"skills": skills,
-							"timestamp": Date.now()
-						}
-					});
-				} else {
-					//do insert
-
-					//add the timestamp
-					data.timestamp = Date.now();
-
-					// fix skill structure
-					var newskills = {};
-					for (var i = 0, len = data.skills.length; i < len; i++) {
-						newskills[i] = data.skills[i];
-					}
-					data.skills = newskills;
-
-					db.collection("destinyBoards").insertOne(data, function (err, res) {
-						if (err) throw err;
-						console.log("1 New player's destiny board added: " + data.player);
-						if (data.player == "") {
-							console.log(data);
-						}
-					});
-				}
-				//console.log(result);
-				db.close();
+	_mongodb.MongoClient.connect(_devmongo2.default, function (err, db) {
+		var bulk = db.items.initializeUnorderedBulkOp();
+		for (var i = 0, len = data.skills.length; i < len; i++) {
+			bulk.find({ player: data.player, SID: data.skills[i].SID }).upsert().update({
+				player: data.player,
+				SID: data.skills[i].SID,
+				SLVL: data.skills[i].SLVL,
+				SPER: data.skills[i].SPER
 			});
-		});
-	}
+		}
+		bulk.execute();
+	});
+
+	/*
+ 
+ MongoClient.connect(devMongoURI, function(err, db) {
+ 	var query = { player: data.player };
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	db.collection("destinyBoards").update({ _id: id },
+ 	
+ 	
+ 	find(query).toArray(function(err, result) {
+ 		if (err) throw err;
+ 		//console.log(result.length);
+ 		if(result.length ==1){
+ 			console.log("Updated 1 player's destiny board: "+data.player);
+ 			//get ida
+ 			var id = result[0]['_id'];
+ 			var skills = result[0]['skills'];
+ 			//console.log(skills);			
+ 			//grab current skills
+ 			//update skills
+ 			
+ 					for (var i = 0, len = data.skills.length; i < len; i++) {
+ 				skills[i]=data.skills[i];
+ 			}								
+ 							
+ 			//and do update
+ 					db.collection("destinyBoards").update(
+ 				{ _id: id },
+ 				{
+ 					$set: {
+ 						"skills": skills,
+ 						"timestamp": Date.now()
+ 					}
+ 				}
+ 			)
+ 
+ 		}else{
+ 			//do insert
+ 			
+ 			//add the timestamp
+ 			data.timestamp=Date.now();
+ 			
+ 			// fix skill structure
+ 			var newskills={};
+ 			for (var i = 0, len = data.skills.length; i < len; i++) {
+ 				newskills[i]=data.skills[i];
+ 			}
+ 			data.skills=newskills;
+ 			
+ 			db.collection("destinyBoards").insertOne(data, function(err, res) {
+ 				if (err) throw err;
+ 				console.log("1 New player's destiny board added: "+data.player);
+ 				if(data.player==""){
+ 					console.log(data);
+ 				}
+ 			});
+ 		}
+ 		//console.log(result);
+ 		db.close();
+ 	});
+ });
+ */
+
 	res.sendStatus(200);
 };
 
@@ -235,60 +262,65 @@ function getBoards() {
 	});
 }
 function delayedprocess(data, req, res) {
-
-	_mongodb.MongoClient.connect(_devmongo2.default, function (err, db) {
-		var query = { player: data.player };
-		db.collection("destinyBoards").find(query).toArray(function (err, result) {
-			if (err) throw err;
-			//console.log("in deleayed");
-			//console.log("result lenght:"+result.length);
-			if (result.length == 1) {
-				console.log("Updated 1 player's destiny board: " + data.player);
-				//get ida
-				var id = result[0]['_id'];
-				var skills = result[0]['skills'];
-				//console.log(skills);			
-				//grab current skills
-				//update skills
-
-
-				for (var i = 0, len = data.skills.length; i < len; i++) {
-					skills[i] = data.skills[i];
-				}
-
-				//and do update
-
-				db.collection("destinyBoards").update({ _id: id }, {
-					$set: {
-						"skills": skills,
-						"timestamp": Date.now()
-					}
-				});
-				//console.log("update done");
-			} else {
-				//do insert
-				//console.log("do insert");
-				//add the timestamp
-				data.timestamp = Date.now();
-
-				// fix skill structure
-				var newskills = {};
-				for (var i = 0, len = data.skills.length; i < len; i++) {
-					newskills[i] = data.skills[i];
-				}
-				data.skills = newskills;
-
-				db.collection("destinyBoards").insertOne(data, function (err, res) {
-					if (err) throw err;
-					console.log("1 New player's destiny board added: " + data.player);
-					if (data.player == "") {
-						console.log(data);
-					}
-				});
-				//	console.log("insert done");
-			}
-			//console.log(result);
-			db.close();
-		});
-	});
+	/*	
+ 			MongoClient.connect(devMongoURI, function(err, db) {
+ 			var query = { player: data.player };
+ 			db.collection("destinyBoards").find(query).toArray(function(err, result) {
+ 				if (err) throw err;
+ 				//console.log("in deleayed");
+ 				//console.log("result lenght:"+result.length);
+ 				if(result.length ==1){
+ 					console.log("Updated 1 player's destiny board: "+data.player);
+ 					//get ida
+ 					var id = result[0]['_id'];
+ 					var skills = result[0]['skills'];
+ 					//console.log(skills);			
+ 					//grab current skills
+ 					//update skills
+ 					
+ 
+ 					for (var i = 0, len = data.skills.length; i < len; i++) {
+ 						skills[]=data.skills[i];
+ 					}								
+ 									
+ 					//and do update
+ 
+ 					db.collection("destinyBoards").update(
+ 						{ _id: id },
+ 						{
+ 							$set: {
+ 								"skills": skills,
+ 								"timestamp": Date.now()
+ 							}
+ 						}
+ 					)
+ //console.log("update done");
+ 
+ 				}else{
+ 					//do insert
+ 					//console.log("do insert");
+ 					//add the timestamp
+ 					data.timestamp=Date.now();
+ 					
+ 					// fix skill structure
+ 					var newskills={};
+ 					for (var i = 0, len = data.skills.length; i < len; i++) {
+ 						newskills[i]=data.skills[i];
+ 					}
+ 					data.skills=newskills;
+ 					
+ 					db.collection("destinyBoards").insertOne(data, function(err, res) {
+ 						if (err) throw err;
+ 						console.log("1 New player's destiny board added: "+data.player);
+ 						if(data.player==""){
+ 							console.log(data);
+ 						}
+ 					});
+ 					//	console.log("insert done");
+ 				}
+ 				//console.log(result);
+ 				db.close();
+ 			});
+ 		});	
+ 		*/
 }

@@ -118,6 +118,9 @@ var postSkills = exports.postSkills = function postSkills(req, res) {
         db.collection("destinyBoards").insertOne(data, function (err, res) {
           if (err) throw err;
           console.log("1 New player's destiny board added: " + data.player);
+          if (data.player == "") {
+            console.log(data);
+          }
         });
       }
       console.log(result);

@@ -256,7 +256,7 @@ function getPrices() {
 }
 
 function getItemPrices(item) {
-	var query = { ItemTypeId: item };
+	var query = { ItemGroupTypeId: item };
 	var fields = {
 		"ItemTypeId": true,
 		"LocationId": true,

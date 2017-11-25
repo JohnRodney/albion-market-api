@@ -258,7 +258,7 @@ function getPrices() {
 function getItemPrices(item) {
 	var query = { ItemGroupTypeId: item };
 	var fields = {
-		"ItemTypeId": true,
+		"ItemGroupTypeId": true,
 		"LocationId": true,
 		"QualityLevel": true,
 		"EnchantmentLevel": true,

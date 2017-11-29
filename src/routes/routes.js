@@ -70,7 +70,8 @@ export const postNodes = (req, res) => {
 						NodeId: data.nodes[i].NodeId,
 						NodeTier: data.nodes[i].Tier,
 						NodeCharges: data.nodes[i].Charges,
-						NodeLocation: data.nodes[i].NodeLocation,
+						NodeLocationX: data.nodes[i].NodeLocationX,
+						NodeLocationZ: data.nodes[i].NodeLocationZ,
 						NodeThing: data.nodes[i].NodeThing,
 						Zone: data.zone
 					} 

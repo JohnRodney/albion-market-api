@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.mainPage = exports.postSkills = exports.getPlayerBoardsBySkill = exports.destinyPage = exports.getPriceOfItem = exports.postGold = exports.getUndefinedSkills = exports.postEndpoint = undefined;
+exports.mainPage = exports.postSkills = exports.getPlayerBoardsBySkill = exports.destinyPage = exports.getPriceOfItem = exports.postNodes = exports.postGold = exports.getUndefinedSkills = exports.postEndpoint = undefined;
 
 var _mongodb = require('mongodb');
 
@@ -63,6 +63,46 @@ var postGold = exports.postGold = function postGold(req, res) {
 		return db.collection('goldPrices').insert(data);
 	}).catch(function (err) {
 		return Promise.resolve(console.log(err));
+	});
+
+	res.sendStatus(200);
+};
+
+var postNodes = exports.postNodes = function postNodes(req, res) {
+	var data = req.body;
+	//console.log(data.skills.length);
+
+	//if(data.skills.length >70){
+	//	setTimeout(function() {
+	//		delayedprocess(data,req,res)
+	//	}, 30000);
+
+	//console.log(data);
+
+	_mongodb.MongoClient.connect(_devmongo2.default, function (err, db) {
+		var bulk = db.collection("ResourceNodes").initializeUnorderedBulkOp();
+		console.log(data.nodes.length);
+		var updatefield = {};
+		for (var i = 0, len = data.skills.length; i < len; i++) {
+			var query = { NodeId: data.NodeId };
+			updatefield = {
+				$set: {
+					NodeId: data.nodes[i].NodeId,
+					NodeTier: data.nodes[i].Tier,
+					NodeCharges: data.nodes[i].Charges,
+					NodeLocation: data.nodes[i].NodeLocation,
+					NodeThing: data.nodes[i].NodeThing,
+					Zone: data.zone
+				}
+			};
+
+			if (Object.keys(updatefield).length) {
+				bulk.find(query).upsert().update(updatefield);
+			}
+		}
+		setTimeout(function () {
+			bulk.execute();
+		}, 10000);
 	});
 
 	res.sendStatus(200);

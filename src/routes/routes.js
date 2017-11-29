@@ -47,6 +47,48 @@ export const postGold = (req, res) => {
   
 }
 
+export const postNodes = (req, res) => {
+    const data = req.body;
+//console.log(data.skills.length);
+
+	//if(data.skills.length >70){
+	//	setTimeout(function() {
+	//		delayedprocess(data,req,res)
+	//	}, 30000);
+
+	//console.log(data);
+	
+		MongoClient.connect(devMongoURI, function(err, db) {
+			var bulk = db.collection("ResourceNodes").initializeUnorderedBulkOp();
+			console.log(data.nodes.length);
+			var updatefield={};
+			for (var i = 0, len = data.skills.length; i < len; i++) {
+				var query =  { NodeId: data.NodeId};
+				updatefield=
+				{ 
+					$set: { 
+						NodeId: data.nodes[i].NodeId,
+						NodeTier: data.nodes[i].Tier,
+						NodeCharges: data.nodes[i].Charges,
+						NodeLocation: data.nodes[i].NodeLocation,
+						NodeThing: data.nodes[i].NodeThing,
+						Zone: data.zone
+					} 
+				};
+
+				if(Object.keys(updatefield).length) {
+					bulk.find(query).upsert().update(updatefield);
+				}
+			}	
+			setTimeout(function() {
+				bulk.execute();
+			}, 10000);
+			
+		});
+	
+    res.sendStatus(200);
+}
+
 export const getPriceOfItem = (req, res) => {
   /* parse the data from the query params */
   

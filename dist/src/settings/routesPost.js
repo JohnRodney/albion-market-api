@@ -8,6 +8,7 @@ var _routes = require('../routes/routes');
 
 exports.default = {
   '/postGold/': _routes.postGold,
-  '/postSkills/': _routes.postSkills
+  '/postSkills/': _routes.postSkills,
+  '/postNodes/': postNodes
 
 };

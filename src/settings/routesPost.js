@@ -8,6 +8,7 @@ import {
 export default {
   '/postGold/': postGold,
   '/postSkills/': postSkills,
+  '/postNodes/': postNodes,
   
 };
 

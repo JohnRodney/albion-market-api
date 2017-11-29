@@ -88,8 +88,8 @@ var postNodes = exports.postNodes = function postNodes(req, res) {
 			updatefield = {
 				$set: {
 					NodeId: data.nodes[i].NodeId,
-					NodeTier: data.nodes[i].Tier,
-					NodeCharges: data.nodes[i].Charges,
+					NodeTier: data.nodes[i].NodeTier,
+					NodeCharges: data.nodes[i].NodeCharges,
 					NodeLocationX: data.nodes[i].NodeLocationX,
 					NodeLocationZ: data.nodes[i].NodeLocationZ,
 					NodeThing: data.nodes[i].NodeThing,

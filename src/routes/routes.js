@@ -60,9 +60,9 @@ export const postNodes = (req, res) => {
 	
 		MongoClient.connect(devMongoURI, function(err, db) {
 			var bulk = db.collection("ResourceNodes").initializeUnorderedBulkOp();
-			console.log(data.nodes.length);
+			console.log(data);
 			var updatefield={};
-			for (var i = 0, len = data.skills.length; i < len; i++) {
+			for (var i = 0, len = data.nodes.length; i < len; i++) {
 				var query =  { NodeId: data.NodeId};
 				updatefield=
 				{ 

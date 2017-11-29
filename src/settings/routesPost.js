@@ -2,6 +2,7 @@
 import {
   postGold,
   postSkills,
+  postNodes,
 } from '../routes/routes';
 
 

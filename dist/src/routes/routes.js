@@ -93,7 +93,8 @@ var postNodes = exports.postNodes = function postNodes(req, res) {
 					NodeLocationX: data.nodes[i].NodeLocationX,
 					NodeLocationZ: data.nodes[i].NodeLocationZ,
 					NodeThing: data.nodes[i].NodeThing,
-					Zone: data.zone
+					Zone: data.zone,
+					LastUpdated: Date.now()
 				}
 			};
 

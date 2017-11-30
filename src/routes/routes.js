@@ -33,6 +33,22 @@ export const getUndefinedSkills = (req, res) => {
 
   
 }
+
+
+
+export const getResourceMapByMid = (req, res) => {
+	/* parse the data from the query params */
+  
+  getResourceMap(req.params.mid)
+    .then(resources => {
+      res.send(resources);
+    })
+    .catch(err => Promise.resolve(console.log(err)));
+  
+  
+
+  
+}
 export const postGold = (req, res) => {
   /* parse the data from the query params */
 
@@ -301,6 +317,16 @@ function getPrices() {
   })
 }
 
+function getResourceMap(mid){
+	return new Promise((res, rej) => {
+		var query = { zone: mid };
+    MongoClient.connect(devMongoURI)
+      .then((db) => {
+        const resources = db.collection('ResourceNodes').find(query).toArray();
+        resources.then(p => res(p))
+      });
+  })
+}
 
 function getItemPrices(item){
 	var query = { ItemGroupTypeId: item };

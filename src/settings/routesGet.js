@@ -5,7 +5,9 @@ import {
   destinyPage,
   getPlayerBoardsBySkill,
   getUndefinedSkills,
-  getPriceOfItem
+  getPriceOfItem,
+  getResourceMapByMid
+  
 } from '../routes/routes';
 
 
@@ -15,6 +17,7 @@ export default {
   '/destiny/': destinyPage,
   '/item/:item': getPriceOfItem,
   '/destiny/:sid': getPlayerBoardsBySkill,
+  '/resourcemap/:mid': getResourceMapByMid,
   '/skills/undefined/': getUndefinedSkills,
   '/': mainPage,
 };

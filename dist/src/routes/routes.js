@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.mainPage = exports.postSkills = exports.getPlayerBoardsBySkill = exports.destinyPage = exports.getPriceOfItem = exports.postNodes = exports.postGold = exports.getUndefinedSkills = exports.postEndpoint = undefined;
+exports.mainPage = exports.postSkills = exports.getPlayerBoardsBySkill = exports.destinyPage = exports.getPriceOfItem = exports.postNodes = exports.postGold = exports.getResourceMapByMid = exports.getUndefinedSkills = exports.postEndpoint = undefined;
 
 var _mongodb = require('mongodb');
 
@@ -50,6 +50,16 @@ var getUndefinedSkills = exports.getUndefinedSkills = function getUndefinedSkill
 
 	getUndefinedBoards(skills).then(function (boards) {
 		res.send(boards);
+	}).catch(function (err) {
+		return Promise.resolve(console.log(err));
+	});
+};
+
+var getResourceMapByMid = exports.getResourceMapByMid = function getResourceMapByMid(req, res) {
+	/* parse the data from the query params */
+
+	getResourceMap(req.params.mid).then(function (resources) {
+		res.send(resources);
 	}).catch(function (err) {
 		return Promise.resolve(console.log(err));
 	});
@@ -294,6 +304,18 @@ function getPrices() {
 		_mongodb.MongoClient.connect(_devmongo2.default).then(function (db) {
 			var prices = db.collection('prices').find().toArray();
 			prices.then(function (p) {
+				return res(p);
+			});
+		});
+	});
+}
+
+function getResourceMap(mid) {
+	return new Promise(function (res, rej) {
+		var query = { zone: mid };
+		_mongodb.MongoClient.connect(_devmongo2.default).then(function (db) {
+			var resources = db.collection('ResourceNodes').find(query).toArray();
+			resources.then(function (p) {
 				return res(p);
 			});
 		});

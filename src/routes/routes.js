@@ -60,11 +60,11 @@ export const postNodes = (req, res) => {
 	
 		MongoClient.connect(devMongoURI, function(err, db) {
 			var bulk = db.collection("ResourceNodes").initializeUnorderedBulkOp();
-			console.log(data);
+			//console.log(data);
 			var updatefield={};
 			for (var i = 0, len = data.nodes.length; i < len; i++) {
 				if(data.nodes[i].NodeTier!=1){//exclusions Tier 1 nodes
-					var query =  { NodeId: data.NodeId};
+					var query =  { NodeId: data.nodes[i].NodeId};
 					updatefield=
 					{ 
 						$set: { 

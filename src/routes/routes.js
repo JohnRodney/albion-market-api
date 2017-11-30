@@ -63,23 +63,25 @@ export const postNodes = (req, res) => {
 			console.log(data);
 			var updatefield={};
 			for (var i = 0, len = data.nodes.length; i < len; i++) {
-				var query =  { NodeId: data.NodeId};
-				updatefield=
-				{ 
-					$set: { 
-						NodeId: data.nodes[i].NodeId,
-						NodeTier: data.nodes[i].NodeTier,
-						NodeCharges: data.nodes[i].NodeCharges,
-						NodeLocationX: data.nodes[i].NodeLocationX,
-						NodeLocationZ: data.nodes[i].NodeLocationZ,
-						NodeThing: data.nodes[i].NodeThing,
-						Zone: data.zone,
-						LastUpdated: Date.now()
-					} 
-				};
+				if(data.nodes[i].NodeTier!=1){//exclusions Tier 1 nodes
+					var query =  { NodeId: data.NodeId};
+					updatefield=
+					{ 
+						$set: { 
+							NodeId: data.nodes[i].NodeId,
+							NodeTier: data.nodes[i].NodeTier,
+							NodeCharges: data.nodes[i].NodeCharges,
+							NodeLocationX: data.nodes[i].NodeLocationX,
+							NodeLocationZ: data.nodes[i].NodeLocationZ,
+							NodeThing: data.nodes[i].NodeThing,
+							Zone: data.zone,
+							LastUpdated: Date.now()
+						} 
+					};
 
-				if(Object.keys(updatefield).length) {
-					bulk.find(query).upsert().update(updatefield);
+					if(Object.keys(updatefield).length) {
+						bulk.find(query).upsert().update(updatefield);
+					}
 				}
 			}	
 			setTimeout(function() {

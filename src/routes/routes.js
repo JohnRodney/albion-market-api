@@ -320,6 +320,7 @@ function getPrices() {
 function getResourceMap(mid){
 	return new Promise((res, rej) => {
 		var query = { zone: mid };
+		console.log(query)
     MongoClient.connect(devMongoURI)
       .then((db) => {
         const resources = db.collection('ResourceNodes').find(query).toArray();

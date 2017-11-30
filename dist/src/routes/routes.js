@@ -7,6 +7,18 @@ exports.mainPage = exports.postSkills = exports.getPlayerBoardsBySkill = exports
 
 var _mongodb = require('mongodb');
 
+var _pureimage = require('pureimage');
+
+var _pureimage2 = _interopRequireDefault(_pureimage);
+
+var _fs = require('fs');
+
+var _fs2 = _interopRequireDefault(_fs);
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
 var _devmongo = require('../settings/devmongo');
 
 var _devmongo2 = _interopRequireDefault(_devmongo);
@@ -58,10 +70,26 @@ var getUndefinedSkills = exports.getUndefinedSkills = function getUndefinedSkill
 var getResourceMapByMid = exports.getResourceMapByMid = function getResourceMapByMid(req, res) {
 	/* parse the data from the query params */
 
-	getResourceMap(req.params.mid).then(function (resources) {
-		res.send(resources);
-	}).catch(function (err) {
-		return Promise.resolve(console.log(err));
+	/*getResourceMap(req.params.mid)
+   .then(resources => {
+     res.send(resources);
+   })
+   .catch(err => Promise.resolve(console.log(err)));
+ 
+ */
+	_pureimage2.default.decodeJPEGFromStream(_fs2.default.createReadStream("src/images/bird.jpg")).then(function (img) {
+		console.log("size is", img.width, img.height);
+		var img2 = _pureimage2.default.make(50, 50);
+		var c = img2.getContext('2d');
+		c.drawImage(img, 0, 0, img.width, img.height, // source dimensions
+		0, 0, 50, 50 // destination dimensions
+		);
+		var pth = "src/images/resized_bird.jpg";
+		_pureimage2.default.encodeJPEGToStream(img2, _fs2.default.createWriteStream(pth)).then(function () {
+			console.log("done writing");
+			res.sendFile('resized_bird.jpg', { root: _path2.default.join(__dirname, 'src/images') });
+			//res.sendFile("src/images/resized_bird.jpg");
+		});
 	});
 };
 var postGold = exports.postGold = function postGold(req, res) {

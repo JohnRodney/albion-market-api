@@ -107,7 +107,7 @@ var postNodes = exports.postNodes = function postNodes(req, res) {
 		}
 		setTimeout(function () {
 			bulk.execute();
-		}, 10000);
+		}, 500);
 	});
 
 	res.sendStatus(200);

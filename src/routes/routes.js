@@ -86,7 +86,7 @@ export const postNodes = (req, res) => {
 			}	
 			setTimeout(function() {
 				bulk.execute();
-			}, 10000);
+			}, 500);
 			
 		});
 	

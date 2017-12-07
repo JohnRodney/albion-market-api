@@ -47,16 +47,14 @@ var postMarket = exports.postMarket = function postMarket(req, res) {
 
 	/* parse the data from the query params */
 	//const data = JSON.parse(req.query.data).Orders;
-	var data = req.body.Orders;
-	console.log(data);
+	//const data = req.body.Orders;
+	console.log(req.text);
 
 	/* insert all of the entries as single prices */
-	_mongodb.MongoClient.connect(_devmongo2.default).then(function (db) {
-		return db.collection('prices').insertMany(data);
-	}).catch(function (err) {
-		return Promise.resolve(console.log(err));
-	});
-
+	/* MongoClient.connect(devMongoURI)
+    .then((db) => db.collection('prices').insertMany(data))
+    .catch(err => Promise.resolve(console.log(err)));
+ */
 	res.sendStatus(200);
 };
 var getUndefinedSkills = exports.getUndefinedSkills = function getUndefinedSkills(req, res) {

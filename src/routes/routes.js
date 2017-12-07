@@ -13,20 +13,8 @@ var skills=[ "20", "22", "25", "27", "28", "30", "32", "34", "36", "38", "39", "
 
 
 export const postMarket = (req, res) => {
-	console.log("inside popstmarket");
-	console.info("test info");
-	console.error("test error");
-	console.warn("test warn");
-	
-	console.time("test time");
-	console.timeEnd("testing time end");
-	
-	
-		
-  /* parse the data from the query params */
-  //const data = JSON.parse(req.query.data).Orders;
 	  const data = req.body.Orders;
-	  console.log(req.body.Orders);
+
 
   /* insert all of the entries as single prices */
   MongoClient.connect(devMongoURI)
@@ -301,7 +289,7 @@ export const postSkills = (req, res) => {
 export const mainPage = (req, res) => {
   getPrices()
     .then(prices => {
-      const itemNames = prices.map(price => price.ItemTypeId);
+      const itemNames = prices.map(price => price.GroupTypeId);
       const uniqueItemNames = itemNames.filter((itemName, i) => itemNames.indexOf(itemName) === i).sort();
 
       res.send(getResponseLayout(

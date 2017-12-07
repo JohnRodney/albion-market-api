@@ -1,6 +1,5 @@
 
 import {
-  postEndpoint,
   mainPage,
   destinyPage,
   getPlayerBoardsBySkill,
@@ -13,7 +12,6 @@ import {
 
 
 export default {
-  '/postMarket/': postEndpoint,	
   '/destiny/': destinyPage,
   '/item/:item': getPriceOfItem,
   '/destiny/:sid': getPlayerBoardsBySkill,

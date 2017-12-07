@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.mainPage = exports.postSkills = exports.getPlayerBoardsBySkill = exports.destinyPage = exports.getPriceOfItem = exports.postNodes = exports.postGold = exports.getResourceMapByMid = exports.getUndefinedSkills = exports.postEndpoint = undefined;
+exports.mainPage = exports.postSkills = exports.getPlayerBoardsBySkill = exports.destinyPage = exports.getPriceOfItem = exports.postNodes = exports.postGold = exports.getResourceMapByMid = exports.getUndefinedSkills = exports.postMarket = undefined;
 
 var _mongodb = require('mongodb');
 
@@ -43,9 +43,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var skills = ["20", "22", "25", "27", "28", "30", "32", "34", "36", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "59", "60", "61", "64", "65", "66", "67", "79", "81", "82", "83", "86", "88", "90", "91", "93", "95", "96", "98", "99", "100", "107", "109", "110", "111", "113", "118", "123", "124", "125", "126", "128", "130", "132", "133", "135", "136", "140", "141", "145", "146", "147", "148", "161", "170", "171", "175", "178", "269", "270", "271", "274", "308", "309", "310", "311", "313", "314", "315", "316", "317", "318", "319", "320", "321", "322", "323", "324", "325", "326", "327", "328", "343", "344", "348", "353", "354", "360", "365", "366", "386", "389", "395", "401", "408", "418"];
 
-var postEndpoint = exports.postEndpoint = function postEndpoint(req, res) {
+var postMarket = exports.postMarket = function postMarket(req, res) {
+
 	/* parse the data from the query params */
-	var data = JSON.parse(req.query.data).Orders;
+	//const data = JSON.parse(req.query.data).Orders;
+	var data = req.body.Orders;
+	console.log(data);
 
 	/* insert all of the entries as single prices */
 	_mongodb.MongoClient.connect(_devmongo2.default).then(function (db) {
@@ -77,20 +80,26 @@ var getResourceMapByMid = exports.getResourceMapByMid = function getResourceMapB
    .catch(err => Promise.resolve(console.log(err)));
  
  */
-	_pureimage2.default.decodeJPEGFromStream(_fs2.default.createReadStream("src/images/bird.jpg")).then(function (img) {
+	var rs = _fs2.default.createReadStream(_path2.default.join(__dirname, '../images/bird.jpg'));
+	var pth = _path2.default.join(__dirname, '../images/resized_bird.jpg');
+	var ws = _fs2.default.createWriteStream(pth);
+	console.log("before decode");
+	_pureimage2.default.decodeJPEGFromStream(rs).then(function (img) {
 		console.log("size is", img.width, img.height);
 		var img2 = _pureimage2.default.make(50, 50);
 		var c = img2.getContext('2d');
 		c.drawImage(img, 0, 0, img.width, img.height, // source dimensions
 		0, 0, 50, 50 // destination dimensions
 		);
-		var pth = "src/images/resized_bird.jpg";
-		_pureimage2.default.encodeJPEGToStream(img2, _fs2.default.createWriteStream(pth)).then(function () {
+		console.log("before encode");
+		_pureimage2.default.encodeJPEGToStream(img2, ws).then(function () {
 			console.log("done writing");
-			res.sendFile('resized_bird.jpg', { root: _path2.default.join(__dirname, 'src/images') });
+			res.sendStatus(200);
+			//res.sendFile('resized_bird.jpg', { root: path.join(__dirname, '../images') });
 			//res.sendFile("src/images/resized_bird.jpg");
 		});
 	});
+	rs.close();ws.close();
 };
 var postGold = exports.postGold = function postGold(req, res) {
 	/* parse the data from the query params */

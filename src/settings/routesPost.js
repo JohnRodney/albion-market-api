@@ -1,5 +1,6 @@
 
 import {
+  postMarket,
   postGold,
   postSkills,
   postNodes,
@@ -7,6 +8,7 @@ import {
 
 
 export default {
+  '/postMarket/': postMarket,	
   '/postGold/': postGold,
   '/postSkills/': postSkills,
   '/postNodes/': postNodes,

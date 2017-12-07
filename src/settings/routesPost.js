@@ -8,7 +8,7 @@ import {
 
 
 export default {
-  '/postMarket/': postMarket,	
+  '/postOrder/': postMarket,	
   '/postGold/': postGold,
   '/postSkills/': postSkills,
   '/postNodes/': postNodes,

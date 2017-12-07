@@ -47,8 +47,8 @@ var postMarket = exports.postMarket = function postMarket(req, res) {
 
 	/* parse the data from the query params */
 	//const data = JSON.parse(req.query.data).Orders;
-	var data = req.body.Orders;
-	console.log(req.body.Orders);
+	var data = req.body;
+	console.log("test");
 
 	/* insert all of the entries as single prices */
 	_mongodb.MongoClient.connect(_devmongo2.default).then(function (db) {

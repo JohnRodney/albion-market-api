@@ -44,11 +44,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var skills = ["20", "22", "25", "27", "28", "30", "32", "34", "36", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "59", "60", "61", "64", "65", "66", "67", "79", "81", "82", "83", "86", "88", "90", "91", "93", "95", "96", "98", "99", "100", "107", "109", "110", "111", "113", "118", "123", "124", "125", "126", "128", "130", "132", "133", "135", "136", "140", "141", "145", "146", "147", "148", "161", "170", "171", "175", "178", "269", "270", "271", "274", "308", "309", "310", "311", "313", "314", "315", "316", "317", "318", "319", "320", "321", "322", "323", "324", "325", "326", "327", "328", "343", "344", "348", "353", "354", "360", "365", "366", "386", "389", "395", "401", "408", "418"];
 
 var postMarket = exports.postMarket = function postMarket(req, res) {
+	console.log("inside popstmarket");
+	console.info("test info");
+	console.error("test error");
+	console.warn("test warn");
+
+	console.time("test time");
+	console.timeEnd("testing time end");
 
 	/* parse the data from the query params */
 	//const data = JSON.parse(req.query.data).Orders;
-	var data = req.body;
-	console.log("test");
+	var data = req.body.Orders;
+	console.log(req.body.Orders);
 
 	/* insert all of the entries as single prices */
 	_mongodb.MongoClient.connect(_devmongo2.default).then(function (db) {

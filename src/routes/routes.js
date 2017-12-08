@@ -117,7 +117,7 @@ export const postNodes = (req, res) => {
 							NodeCharges: data.nodes[i].NodeCharges,
 							NodeLocationX: data.nodes[i].NodeLocationX,
 							NodeLocationZ: data.nodes[i].NodeLocationZ,
-							NodeThing: data.nodes[i].NodeThing,
+							NodeType: data.nodes[i].NodeType,
 							Zone: data.zone,
 							LastUpdated: Date.now()
 						} 

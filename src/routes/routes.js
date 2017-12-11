@@ -44,37 +44,14 @@ export const getUndefinedSkills = (req, res) => {
 export const getResourceMapByMid = (req, res) => {
 	/* parse the data from the query params */
   
-  /*getResourceMap(req.params.mid)
+	getResourceMap(req.params.mid)
     .then(resources => {
       res.send(resources);
     })
     .catch(err => Promise.resolve(console.log(err)));
   
-  */
-  var rs=fs.createReadStream(path.join(__dirname, '../images/bird.jpg'));
-  var pth =path.join(__dirname, '../images/resized_bird.jpg');
-  var ws= fs.createWriteStream(pth);
-  console.log("before decode");
-  pureimage.decodeJPEGFromStream(rs).then((img)=>{
-    console.log("size is",img.width,img.height);
-    var img2 = pureimage.make(50,50);
-    var c = img2.getContext('2d');
-    c.drawImage(img,
-        0, 0, img.width, img.height, // source dimensions
-        0, 0, 50, 50   // destination dimensions
-    );
-console.log("before encode");
-    pureimage.encodeJPEGToStream(img2,ws).then(()=> {
-        console.log("done writing");
-		res.sendStatus(200);
-		//res.sendFile('resized_bird.jpg', { root: path.join(__dirname, '../images') });
-		//res.sendFile("src/images/resized_bird.jpg");
-		
-    });
 
  
-});
-rs.close();ws.close();
 
 }
 export const postGold = (req, res) => {

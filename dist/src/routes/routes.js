@@ -69,33 +69,11 @@ var getUndefinedSkills = exports.getUndefinedSkills = function getUndefinedSkill
 var getResourceMapByMid = exports.getResourceMapByMid = function getResourceMapByMid(req, res) {
 	/* parse the data from the query params */
 
-	/*getResourceMap(req.params.mid)
-   .then(resources => {
-     res.send(resources);
-   })
-   .catch(err => Promise.resolve(console.log(err)));
- 
- */
-	var rs = _fs2.default.createReadStream(_path2.default.join(__dirname, '../images/bird.jpg'));
-	var pth = _path2.default.join(__dirname, '../images/resized_bird.jpg');
-	var ws = _fs2.default.createWriteStream(pth);
-	console.log("before decode");
-	_pureimage2.default.decodeJPEGFromStream(rs).then(function (img) {
-		console.log("size is", img.width, img.height);
-		var img2 = _pureimage2.default.make(50, 50);
-		var c = img2.getContext('2d');
-		c.drawImage(img, 0, 0, img.width, img.height, // source dimensions
-		0, 0, 50, 50 // destination dimensions
-		);
-		console.log("before encode");
-		_pureimage2.default.encodeJPEGToStream(img2, ws).then(function () {
-			console.log("done writing");
-			res.sendStatus(200);
-			//res.sendFile('resized_bird.jpg', { root: path.join(__dirname, '../images') });
-			//res.sendFile("src/images/resized_bird.jpg");
-		});
+	getResourceMap(req.params.mid).then(function (resources) {
+		res.send(resources);
+	}).catch(function (err) {
+		return Promise.resolve(console.log(err));
 	});
-	rs.close();ws.close();
 };
 var postGold = exports.postGold = function postGold(req, res) {
 	/* parse the data from the query params */

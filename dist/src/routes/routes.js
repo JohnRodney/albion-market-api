@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.mainPage = exports.postSkills = exports.getPlayerBoardsBySkill = exports.destinyPage = exports.getPriceOfItem = exports.postNodes = exports.postGold = exports.getResourceMapByMid = exports.getUndefinedSkills = exports.postMarket = undefined;
+exports.mainPage = exports.postSkills = exports.getPlayerBoardsBySkill = exports.destinyPage = exports.getPriceOfItem = exports.postNodes = exports.postGold = exports.getResourceMapByMid = exports.getResourceNodesByMid = exports.getUndefinedSkills = exports.postMarket = undefined;
 
 var _mongodb = require('mongodb');
 
@@ -66,7 +66,7 @@ var getUndefinedSkills = exports.getUndefinedSkills = function getUndefinedSkill
 	});
 };
 
-var getResourceMapByMid = exports.getResourceMapByMid = function getResourceMapByMid(req, res) {
+var getResourceNodesByMid = exports.getResourceNodesByMid = function getResourceNodesByMid(req, res) {
 	/* parse the data from the query params */
 
 	getResourceMap(req.params.mid).then(function (resources) {
@@ -74,6 +74,12 @@ var getResourceMapByMid = exports.getResourceMapByMid = function getResourceMapB
 	}).catch(function (err) {
 		return Promise.resolve(console.log(err));
 	});
+};
+
+var getResourceMapByMid = exports.getResourceMapByMid = function getResourceMapByMid(req, res) {
+	/* parse the data from the query params */
+
+	res.sendFile('templates/html/nodemap.html', { root: __dirname });
 };
 var postGold = exports.postGold = function postGold(req, res) {
 	/* parse the data from the query params */

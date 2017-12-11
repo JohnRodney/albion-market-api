@@ -1,0 +1,964 @@
+/* =========== MAIN PAGE ================================================================== */
+.rightBlock {
+	padding: 0px;
+}
+	.rightBlock h2{
+		margin: 0px;
+		padding: 0 0 3px;
+		font-size: 16px;
+		font-weight: normal;
+		text-align: left;
+		font-style: italic;
+		border-bottom: 1px solid #979797;
+	}
+
+.leftBlock {
+	padding: 0px;
+}
+
+.portalNewsBlock a {
+	color: #b4b4dc;
+	text-decoration: none;
+}
+
+.gameNewsBlock ul,
+.portalNewsBlock ul {
+	padding: 0 0 0 15px;
+}
+	.gameNewsBlock ul li,
+	.portalNewsBlock ul li {
+		margin: 25px 0 0 0;
+		font-size: 12px;
+		text-align: left;
+		list-style-type: none;
+		color: #cacaca;
+	}
+	.gameNewsBlock ul li {
+		padding: 3px 0;
+		margin: 3px 0 0 0;	
+	}
+		.gameNewsBlock ul li:before {
+			content: "\f097";
+			font-family: FontAwesome;
+			display: inline-block;
+			margin-left: 0px;
+			width: 1.3em;
+		}
+		.gameNewsBlock ul li a {
+			font-size: 13px;
+			color: #fff;
+			text-decoration: none;
+		}
+		.portalNewsBlock ul li span {
+			font-size: 10px;
+			float: right;
+			margin: 9px 0;
+		}
+		.portalNewsBlock ul li h3 {
+			margin: 7px 0;
+			font-size: 16px;
+			color: #fff;
+		}
+
+.portalNewsBlock ul li>ul {
+	margin-top: 15px;
+}
+.portalNewsBlock ul li>ul li {
+	margin: 4px;
+    list-style-type: square;
+}
+
+
+/* ======= BASE PAGES ======================================================================= */
+.leftPart {
+    display: table-cell;
+    width: 35%;
+    padding: 20px 0;
+}
+.rightPart {
+    display: table-cell;
+    width: 65%;
+    padding: 20px 20px 0px;
+    color: #fff;
+    vertical-align: top;
+    text-align: left;
+}
+
+/* ======= MAP PAGE ========================================================================= */
+.pageMap{
+	display: flex;
+    position: relative;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+	.mapPane {
+		flex: 1 0 80%;
+		position: relative;
+		background: rgba(0, 0, 0, 0.9);
+		overflow: auto;
+	}
+		.mapTitle {
+			position: relative;
+			display: table;
+			margin: 0px auto -125px;
+			z-index: 20;
+		}
+			.titleAndInfo {
+				display: table-cell;
+				padding-top: 22px;
+				background: url('/media/images/map_title_back_center.png');
+				vertical-align: top;
+				font-size: 22px;
+				font-weight: bold;
+			}
+				.titleAndInfo > ul {
+					padding: 0px;
+					margin: 0px;
+					font-size: 12px;
+					font-weight: bold;
+				}
+					.titleAndInfo > ul > li {
+						display: inline-block;
+						padding-left: 10px;
+						vertical-align: top;
+					}
+						.titleAndInfo > ul > li > img {
+							display: inline-block;
+							width: 26px;
+							height: 26px;
+							vertical-align: top;
+						}
+							.titleAndInfo > ul > li > ul {
+								display: inline-block;
+								padding: 0px;
+								margin: 0px;
+								vertical-align: top;
+							}
+							.titleAndInfo > ul > li > ul > li {
+								display: inline-block;
+								padding: 0 5px 0 0;
+							}
+								.titleAndInfo > ul > li > ul > li:before{
+									top: 4px !important;
+								}
+						
+			.mapTitle:before, .mapTitle:after {
+				content: "";
+				display: table-cell;
+				width: 194px;
+				height: 125px;
+				vertical-align: top;
+			}
+			.mapTitle:before {
+				background: url('/media/images/map_title_back_left.png');
+			}
+			.mapTitle:after {
+				background: url('/media/images/map_title_back_right.png');
+			}
+		.locationMap{
+			position: relative;
+			display: block;
+			margin: 0px auto;
+			z-index: 0;
+		}
+	.locationChoise {
+		flex: 1 0 20%;
+		min-height: 650px;
+		color: #fff;
+		text-align: left;
+		overflow-y: auto;
+		overflow-x: hidden;
+		background: rgba(0,0,0,0.70);
+	}
+		.searchZone {
+			padding: 0 10px;
+			background-color: #cacaca;
+		}
+		.locationChoise input {
+			width: 100%;
+			margin: auto;
+			padding: 10px 0;
+			border: 0px;
+			background-color: transparent;
+		}
+		.locationsList {}
+			.locationsList a {
+				color: #fff;
+				text-decoration: none;
+				font-size: 14px;
+			}
+			/*.locationsList > li {
+				padding: 5px 0px;
+			}
+			.locationsList > li:nth-child(1){
+				background-color: #635349;
+			}*/
+			.locationsList > li:nth-child(1){
+				background-color: #3c4d2f;
+			}
+			.locationsList > li:nth-child(2){
+				background-color: #325972;
+			}
+			.locationsList > li:nth-child(3){
+				background-color: #6f2019;
+			}
+			.locationsList > li:nth-child(4){
+				background-color: #b16327;
+			}
+			.locationsList > li:nth-child(5){
+				background-color: #bd9f3d;
+			}
+			.locationsList > li:nth-child(6){
+				background-color: #cacaca;
+			}				
+				.locationsList li > ul > li {
+					padding: 0px 10px 10px;
+				}
+					.locationsList > li > ul > li:nth-child(odd){
+						background: rgba(0,0,0,0.2)
+					}
+					/*.locationsList > li > ul > li:nth-child(even){
+						background: rgba(0,0,0,0.4)
+					}*/
+.locationChoise ul {
+	padding: 0px;
+	margin: 0px;
+}
+
+	.locationsList li span {
+		display: block;
+		padding: 5px 10px;
+		cursor: pointer;
+	}
+		.locationsList > li > span > i {
+			float: right;
+			margin: 2px 0;
+		}
+		.locationsList > li > ul > li div {
+			padding-top: 4px;
+			font-size: 10px;
+			line-height: 0px;
+		}
+		.locationsList > li > ul > li div img {
+			display: inline-block;
+			position: relative;
+			top: 5px;
+			width: 16px;
+			margin: 0 2px;
+		}
+.resourcePicker {}
+	.resourcePicker center {
+		margin: 10px 0; 
+	}
+	.resourcePicker > ul > li > span {
+		display: inline-block;
+		width: 95px;
+		padding: 0px 0px 5px 10px;
+		font-size: 12px;
+	}
+	.resourcePicker > ul > li > span > img {
+		position: relative;
+		top: 5px;
+		height: 20px
+	}
+		.resourceCheckers {}
+			.resourceCheckers li {
+				position: relative;
+				display: inline-block;
+				width: 45px;
+				line-height: 24px;
+				text-align: left;
+				vertical-align: top;
+			}
+				li.checkerT2:before {
+					content: url('/media/images/T2.png');
+					position: relative;
+					top: 2px;
+				}
+				li.checkerT3:before {
+					content: url('/media/images/T3.png');
+					position: relative;
+					top: 2px;
+				}
+				li.checkerT4:before {
+					content: url('/media/images/T4.png');
+					position: relative;
+					top: 2px;
+				}
+				li.checkerT5:before {
+					content: url('/media/images/T5.png');
+					position: relative;
+					top: 2px;
+				}
+				li.checkerT6:before {
+					content: url('/media/images/T6.png');
+					position: relative;
+					top: 2px;
+				}
+				li.checkerT7:before {
+					content: url('/media/images/T7.png');
+					position: relative;
+					top: 2px;
+				}
+				li.checkerT8:before {
+					content: url('/media/images/T8.png');
+					position: relative;
+					top: 2px;
+				}
+			.resourceCheckers input {
+				width: auto;
+				margin: 0 0 0 5px;
+			}
+			.resourcePicker ul ul {
+				display: inline-block;
+			}
+		.resetPicker {
+		    display: table;
+			padding: 4px 12px;
+			margin: 10px auto 0;
+			font-size: 13px;
+			background-color: #cacaca;
+			color: #000;
+			border-radius: 3px 3px 3px 3px;
+			-moz-border-radius: 3px 3px 3px 3px;
+			-webkit-border-radius: 3px 3px 3px 3px;
+			cursor: pointer;
+		}
+.nodes > div > div {
+	position: absolute;
+	width: 3px;
+	height: 3px;
+}
+.wood-low,.hide-low,.fiber-low,.ore-low,.rock-low {
+	background-color: #BF9A83;
+	border: 1px solid #482C2C;
+}
+.wood-medium,.hide-medium,.fiber-medium,.ore-medium,.rock-medium {
+	background-color: #83A76A;
+	border: 1px solid #27331D;
+}
+.wood-high,.hide-high,.fiber-high,.ore-high,.rock-high {
+	background-color: #9AC6E2;
+	border: 1px solid #334A58;
+}
+.mobcamp-medium {
+    background-image: url('/media/images/icon_l_mobcamp.png');
+    background-size: cover;
+    width: 24px !important;
+    height: 24px !important;
+    margin-top: -12px;
+    margin-left: -12px;
+}
+/*
+.wood-t5,.hide-t5,.fiber-t5,.ore-t5,.rock-t5 {
+	background-color: #E25C50;
+	border: 1px solid #541E19;
+}
+.wood-t6,.hide-t6,.fiber-t6,.ore-t6,.rock-t6 {
+	background-color: #E49557;
+	border: 1px solid #71390E;
+}
+.wood-t7,.hide-t7,.fiber-t7,.ore-t7,.rock-t7 {
+	background-color: #F3D678;
+	border: 1px solid #695821;
+}
+.wood-t8,.hide-t8,.fiber-t8,.ore-t8,.rock-t8 {
+	background-color: #ffffff;
+	border: 1px solid #3C3C3C;
+}
+*/
+.map .tableFooter {
+	display: none;
+}
+
+.worldMapTile {
+	position: absolute;
+	width: 100px;
+	height: 80px;
+}
+	.worldMapTile > div {
+		position: relative;
+		width: 100px;
+		height: 80px;
+	}
+	.worldMapTile > div > span {
+		display: block;
+		font-size: 9px;
+		width: 60px;
+		margin: 10px auto 0;
+		font-weight: bold;
+	}
+	.worldMapTile  img.pvpMarker {
+		width: 30px;
+		position: absolute;
+		top: 15px;
+		left: 35px;
+	}
+		.mapTile {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			width: 100px;
+			height: 80px;
+		}
+/* ======= GUILDS ============================================================================ */
+.guildsList {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 200px;
+    font-size: 8px;
+    text-align: left;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 200;
+}
+	.guildsList ul {
+		padding: 0 20px 0;
+	}
+		.guildsList ul li b {
+			display: inline-block;
+			width: 80px;
+		}
+		.guildsList ul li span {
+			display: inline-block;
+			width: 50px;
+		}
+			.guildsList ul li span div {
+				display: inline-block;
+				position: relative;
+				top: 1px;
+				margin-right: 4px;
+				width: 8px;
+				height: 8px;
+			}
+
+.worldMapTile .squareUp {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 0;
+    height: 0;
+    border-bottom: 40px solid transparent;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    z-index: 100;
+}
+.worldMapTile .squareDown {
+	content: "";
+    position: absolute;
+    top: 40px;
+    left: 0px;
+    width: 0;
+    height: 0;
+    border-top: 40px solid transparent;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    z-index: 100;
+}
+
+/* ======= SPELLS PAGE ======================================================================= */
+.spells .tableMain ul li {
+	padding: 15px 0px;
+	min-height: 70px;
+}	
+	.spells .tableMain ul li:nth-child(even) {
+		background-color: rgba(255,255,255,0.60);
+	}
+	.spells .tableMain ul li:nth-child(odd) {
+		background-color: rgba(255,255,255,0.40);
+	}
+/* ======= MOBS PAGE ========================================================================= */
+.nodeHeadImg,
+.nodeImg {
+	position: relative;
+    min-width: 120px;
+}
+	.mobs .nodeImg > img {
+		width: 64px;
+	}
+	.mobs .nodeImg .avatarCircle {
+		position: absolute;
+		top: -26px;
+		left: 0px;
+	}
+		.mobs .nodeImg .avatarCircle img {
+			width: 114px;
+		}
+.nodeHeadName,
+.nodeName {
+	width: 350px;
+}
+.nodeHeadTier,
+.nodeTier {
+	width: 100px;
+}
+.nodeHeadAttacktype, .nodeAttacktype {
+	width: 200px;
+}
+.nodeHeadAttackdamage, .nodeHeadMagicresistance, .nodeHeadPhysicalarmor,
+.nodeAttackdamage, .nodeMagicresistance, .nodePhysicalarmor {
+	width: 240px;
+}
+.nodeName{
+	text-align: left;
+}
+
+.tableMain.mobs ul li {
+	padding: 15px 0px;
+	min-height: 70px;
+}
+	.tableMain.mobs ul li:nth-child(even) {
+		background-color: rgba(255,255,255,0.60);
+	}
+	.tableMain.mobs ul li:nth-child(odd) {
+		background-color: rgba(255,255,255,0.40);
+	}
+
+/* ======= MOB PAGE ========================================================================= */
+.mobCard {
+    padding-left: 20px;
+}
+.mobCard .cardHeader {
+	position: relative;
+}
+	.mobCard .avatar {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		max-width: 192px;
+		text-align: center;
+	}
+		.mobCard .avatar > img {
+			position: absolute;
+			top: 10px;
+			left: 30px;
+			width: 70px;
+		}
+		.mobCard .avatar > div {
+		position: absolute;
+		top: -18px;
+		}
+		.mobCard .avatar > div > img {
+			width: 128px;
+		}
+	.mobCard .data {
+		display: inline-block;
+		width: 100%;
+		text-align: right;
+		vertical-align: top;
+		color: #fff;
+	}
+		.mobCard .elementHead {
+			min-height: 80px
+		}
+		.elementHead > div {
+			padding: 3px 0;
+			font-size: 11px;
+			font-weight: normal;
+		}
+		.mobCard .data ul li {
+			padding: 3px 0px;
+		}
+		.mobCard .data h1 {
+		    padding: 0px;
+			margin: 0px;
+			font-size: 18px;
+		}
+	.mobCard .data .info {
+		text-align: right;
+		font-size: 12px;
+	}
+	.mobCard .data .info span {
+		float: left;
+	}
+
+/* ======= ITEMS PAGES ====================================================================== */
+.items .nodeName {
+	padding-left: 10px;
+}
+.items .nodeHeadDescr,
+.items .nodeDescr {
+	width: 940px;
+}
+
+.items .nodeDescr {
+	text-align: left;
+}
+
+.nodeImg .itemBack {
+    position: relative;
+    left: 10px;
+    width: 80px;
+    height: 80px;
+}
+.info .itemBack {
+    position: relative;
+    display: inline-block;
+	margin-right: 5px;
+    width: 60px;
+    height: 60px;
+    vertical-align: top;
+}
+	.enchanted:before {
+		content: "";
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 100%;
+		border-radius: 10px 10px 10px 10px;
+		-moz-border-radius: 10px 10px 10px 10px;
+		-webkit-border-radius: 10px 10px 10px 10px;
+	}
+		.enchanted.E1:before {
+			-webkit-box-shadow: 0px 0px 5px 1px rgba(129,255,184,1);
+			-moz-box-shadow: 0px 0px 5px 1px rgba(129,255,184,1);
+			box-shadow: 0px 0px 5px 1px rgba(129,255,184,1);
+		}
+		.enchanted.E2:before {
+			-webkit-box-shadow: 0px 0px 5px 1px rgba(129,246,255,1);
+			-moz-box-shadow: 0px 0px 5px 1px rgba(129,246,255,1);
+			box-shadow: 0px 0px 5px 1px rgba(129,246,255,1);
+		}
+		.enchanted.E3:before {
+			-webkit-box-shadow: 0px 0px 5px 1px rgba(203,144,255,1);
+			-moz-box-shadow: 0px 0px 5px 1px rgba(203,144,255,1);
+			box-shadow: 0px 0px 5px 1px rgba(203,144,255,1);
+		}
+	.nodeImg .T1,.itemCard .T1,.info .T1, .priceMenu .T1 {background: url('/media/images/bg_T1.png')}
+	.nodeImg .T2,.itemCard .T2,.info .T2, .priceMenu .T2 {background: url('/media/images/bg_T2.png')}
+	.nodeImg .T3,.itemCard .T3,.info .T3, .priceMenu .T3 {background: url('/media/images/bg_T3.png')}
+	.nodeImg .T4,.itemCard .T4,.info .T4, .priceMenu .T4 {background: url('/media/images/bg_T4.png')}
+	.nodeImg .T5,.itemCard .T5,.info .T5, .priceMenu .T5 {background: url('/media/images/bg_T5.png')}
+	.nodeImg .T6,.itemCard .T6,.info .T6, .priceMenu .T6 {background: url('/media/images/bg_T6.png')}
+	.nodeImg .T7,.itemCard .T7,.info .T7, .priceMenu .T7 {background: url('/media/images/bg_T7.png')}
+	.nodeImg .T8,.itemCard .T8,.info .T8, .priceMenu .T8 {background: url('/media/images/bg_T8.png')}
+	
+	.nodeImg .T1,.nodeImg .T2,.nodeImg .T3,.nodeImg .T4,
+	.nodeImg .T5,.nodeImg .T6,.nodeImg .T7,.nodeImg .T8,
+	.itemCard .T1,.itemCard .T2,.itemCard .T3,.itemCard .T4,
+	.itemCard .T5,.itemCard .T6,.itemCard .T7,.itemCard .T8,
+	.info .T1,.info .T2,.info .T3,.info .T4,
+	.info .T5,.info .T6,.info .T7,.info .T8	{
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+	
+	.items .itemBack > img {
+		width: 70px;
+	}
+	
+	.info .itemBack > img {
+		padding: 5px  8px !important;
+		width: 45px !important;
+	}
+	.info .itemBack > span {
+		position: absolute;
+		bottom: 8px;
+		right: 8px;
+		font-size: 10px;
+		color: #fff;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+	}
+	
+	.items .tableMain ul li:nth-child(even) {
+		background-color: rgba(255,255,255,0.60);
+	}
+	.items .tableMain ul li:nth-child(odd) {
+		background-color: rgba(255,255,255,0.40);
+	}
+	.info .loot-group {
+		padding: 5px 0px;
+	}
+	
+/* ======= MARKET PAGE ========================================================================= */
+.prices form {
+	padding: 0px;
+}
+.prices .price-form {
+	display: table;
+}
+	.prices .price-form .selectors {
+		display: table-cell;
+		padding: 0 20px 0 0;
+		vertical-align: top;
+	}
+
+	.prices .price-form .prices {
+		display: table-cell;
+		padding: 0 20px 0 0;
+		vertical-align: top;
+	}
+
+		.row-items-T1 > div,
+		.row-items-T2 > div,
+		.row-items-T3 > div,
+		.row-items-T4 > div,
+		.row-items-T5 > div,
+		.row-items-T6 > div,
+		.row-items-T7 > div,
+		.row-items-T8 > div {
+			display: inline-block;
+			width: 18%;
+		}
+
+	.prices form input.submit {
+		display: block;
+		margin: auto;
+		margin-top: 20px;
+		padding: 10px 20px;
+	}
+	
+	.selectors select {
+		width: 100%;
+		margin: 0 0 10px;
+		padding: 2px;
+	}
+	
+ul.priceMenu {
+    display: inline-block;
+    width: 20%;
+    text-align: left;
+    float: left;
+    background-color: rgba(197, 197, 197, 0.65);
+}
+
+.priceMenu li {padding: 0;}
+.priceMenu > li > span {display: block;padding: 10px 0 10px 15px;background-color: #616161;}
+.priceMenu > li > ul > li > span {display: block;position:relative;padding: 5px 0 5px 30px;cursor: pointer;}
+.priceMenu > li > ul > li > span:hover {background-color: rgba(208, 222, 255, 0.4);}
+.priceMenu > li > ul > li > span:after {    content: "\f106" !important;position: absolute;top: 2px;right: 20px;font-family: FontAwesome;font-size: 24px;}
+.priceMenu > li > ul > li > span.isOpen:after {content: "\f107" !important;}
+ul.priceMenu > li > ul > li:nth-child(even) {background-color: #969696;}
+ul.priceMenu > li > ul > li:nth-child(odd) {background-color: #868686;}
+	.priceMenu li.item {padding-left: 45px;}
+	.priceMenu li.item:hover {background-color:rgba(208, 222, 255, 0.4);}
+		.priceMenu li.item a {display: block;padding: 3px 0;text-decoration: none;font-size: 13px;height: 24px;color: #000;}
+		.priceMenu li.item a span {display: inline-block;padding: 2px 0 2px 10px;vertical-align: top;}
+.priceMenu > ul {/*padding-left: 30px;*/}
+.priceMenu > ul > ul {padding-left: 15px;}
+
+.priceMenu .itemBack {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+}
+	.priceMenu .itemBack img{
+		position: absolute;
+		width: 20px;
+		height: 20px;
+		left: 2px;
+		top: 2px;
+	}
+
+
+	
+.priceGraph {
+	display: inline-block;
+	width: 80%;
+	vertical-align: top;
+}
+	.priceGraph .sellOrdersHeader,
+	.priceGraph .buyOrdersHeader {
+		/* margin: 5px 0 0; */
+		padding: 10px 0;
+		display: block;
+		background-color: rgba(0, 0, 0, 0.65);
+		color: #fff;
+	}
+
+.sellOrders,
+.buyOrders {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 310px;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.sellOrders ul,
+.buyOrders ul {
+    position: relative;
+    text-align: left;
+    padding-left: 30px;
+    overflow-x: hidden;
+}
+
+	.sellOrders ul:before,
+	.buyOrders ul:before {
+		content: "";
+		display: block;
+		position: absolute;
+		left: 28px;
+		top: 26px;
+		width: 1px;
+		height: 263px;
+		background-color: #757575;
+	}
+	.sellOrders ul:after,
+	.buyOrders ul:after {
+		content: "";
+		display: block;
+		position: absolute;
+		left: 24px;
+		bottom: 15px;
+		width: 98%;
+		height: 1px;
+		background-color: #757575;
+	}
+		.sellOrders ul li,
+		.buyOrders ul li {
+			position: relative;
+			display: inline-block;
+			width: 17px;
+			height: 290px;
+			margin: 5px;
+			vertical-align: bottom;
+			z-index: 2;
+		}
+			.sellOrders ul li b,
+			.buyOrders ul li b {
+				font-size: 8px;
+				text-align: center;
+				color: #a9a9a9;
+			}
+
+			.sellOrders ul li p,
+			.buyOrders ul li p {
+				position: relative;
+				left: -3px;
+				margin: 0px;
+				font-size: 9px;
+				color: #A9A9A9;
+			}
+
+			.sellOrders ul li > div,
+			.buyOrders ul li > div {
+				position: relative;
+				width: 10px;
+				height: 257px;
+				border: 1px solid rgba(220, 220, 220, 0.15);
+				margin: auto;
+			}
+
+				.sellOrders ul li > div  > div,
+				.buyOrders ul li > div  > div {
+					position: absolute;
+					bottom: 0px;
+					width: 10px;
+					background-color: #ffffff;
+					transition: all 1s linear;
+					-webkit-transition: all 1s linear;
+					-moz-transition: all 1s linear;
+					-o-transition: all 1s linear;
+				}
+
+.sellOrders .maxPrice,
+.buyOrders .maxPrice {
+	position: absolute;
+	display: inline-block;
+	top: 22px;
+	left: 3px;
+	font-weight: bold;
+	font-size: 11px;
+	color: #a9a9a9;
+}
+.sellOrders .minPrice,
+.buyOrders .minPrice {
+	position: absolute;
+	display: inline-block;
+	bottom: 19px;
+	left: 3px;
+	font-weight: bold;
+	font-size: 11px;
+	color: #a9a9a9;
+}
+
+/* ======= ITEM PAGE ========================================================================= */
+.singleItem .rightPart .craftInfo,
+.singleItem .rightPart .enchantInfo,
+.singleItem .rightPart .spellsInfo {
+    display: inline-block;
+    margin: 0 9px 10px 0;
+    width: 48.8%;
+    float: left;
+    vertical-align: top;
+}
+
+.itemCard .cardHeader {
+	display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    text-align: left;
+}
+	.itemCard .elementHead {
+		text-align: left;
+	}
+	.itemCard .itemBack {
+		position: relative;
+		display: inline-block;
+		width: 100px;
+		height: 94px;
+	}
+		.singleItem .itemBack > img {
+			padding: 5px 10px;
+			width: 80px;
+		}
+	
+	.itemCard .data {
+		display: inline-block;
+		width: 100%;
+		padding: 0 0 0 20px;
+		text-align: right;
+		vertical-align: top;
+		color: #fff;
+	}
+		.elementHead > div {
+			display: inline-block;
+			width: 68%;
+			padding: 3px 0;
+			font-size: 11px;
+			font-weight: normal;
+			vertical-align: top;
+		}
+		.itemCard .data ul li {
+			padding: 3px 0px;
+			text-align: left;
+		}
+			.itemCard .data ul li span {
+				float: right;
+			}
+		.itemCard .data h1 {
+		    padding: 0px;
+			margin: 0px;
+			font-size: 18px;
+		}
+	.itemCard .data .info {
+		text-align: right;
+		font-size: 12px;
+	}
+	.spellsInfo .spellBack {
+		display: inline-block;
+		position: relative;
+		width: 70px;
+		height: 70px;
+	}
+		.spellBack:before {
+			content: "";
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			width: 70px;
+			height: 70px;
+			background: url('/media/images/spell_border.png');
+			background-size: cover;
+		}
+		.spellBack > img {
+			width: 70px;
+			height: 70px;
+		}

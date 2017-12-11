@@ -11,6 +11,7 @@ exports.default = {
   '/item/:item': _routes.getPriceOfItem,
   '/destiny/:sid': _routes.getPlayerBoardsBySkill,
   '/resourcemap/:mid': _routes.getResourceMapByMid,
+  '/nodes/:mid': _routes.getResourceNodesByMid,
   '/skills/undefined/': _routes.getUndefinedSkills,
   '/': _routes.mainPage
 };

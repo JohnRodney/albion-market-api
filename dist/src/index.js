@@ -25,6 +25,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var app = (0, _express2.default)();
 var router = _express2.default.Router();
 
+var allowCrossDomain = function allowCrossDomain(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+        res.send(200);
+    } else {
+        next();
+    }
+};
+
 Object.keys(_routesGet2.default).forEach(function (route) {
     return router.get(route, _routesGet2.default[route]);
 });
@@ -32,6 +45,7 @@ Object.keys(_routesPost2.default).forEach(function (route) {
     return router.post(route, _routesPost2.default[route]);
 });
 
+app.use(allowCrossDomain);
 app.use(_bodyParser2.default.json());
 app.use(router);
 app.listen(_port2.default);

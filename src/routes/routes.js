@@ -39,9 +39,7 @@ export const getUndefinedSkills = (req, res) => {
   
 }
 
-
-
-export const getResourceMapByMid = (req, res) => {
+export const getResourceNodesByMid = (req, res) => {
 	/* parse the data from the query params */
   
 	getResourceMap(req.params.mid)
@@ -49,6 +47,16 @@ export const getResourceMapByMid = (req, res) => {
       res.send(resources);
     })
     .catch(err => Promise.resolve(console.log(err)));
+  
+
+ 
+
+}
+
+export const getResourceMapByMid = (req, res) => {
+	/* parse the data from the query params */
+  
+	res.sendFile('templates/html/nodemap.html', {root: __dirname })
   
 
  
